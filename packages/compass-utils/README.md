@@ -1,0 +1,40 @@
+# {{name}}
+> {{description}}
+
+## 目录说明
+
+* `config` 项目配置文件
+  * `modules-entry.js` 获取各模块文件入口
+* `coverage` 单测覆盖率报告
+* `dist` 构建产物
+  * `*.min.js` 入口文件
+  * `*.es.min.js` es module文件
+  * `*.cjs.min.js` commonjs 文件
+  * `*.umd.min.js` umd 文件
+  * `es` es 各模块文件
+  * `cjs` commonjs 各模块文件
+* `src` 源代码
+  * `main.ts` 主入口文件
+  * `modules` 各模块文件夹
+
+## 项目开发
+
+### 安装依赖
+
+`npm install`
+
+### 本地开发模式
+
+`npm start` 将在本地4000端口启动服务,入口为当前目录下的index.html文件
+
+### 代码风格校验
+
+`npm run lint` 执行代码Eslint检查
+
+### 单元测试
+
+`npm run test` 执行单元测试,匹配 `src/**/*.spec.ts`
+
+### 构建发布包
+
+`npm run build` 构建产物
