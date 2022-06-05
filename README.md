@@ -46,3 +46,20 @@
 ### 项目构建
 
 `rush build`
+
+### 添加一个新库
+
+在 packages 新建一个项目后,在rush.json内添加项目信息,结构如下:
+
+```json
+{
+  "projects": [
+    {
+      "packageName": "[package name]", /** 包名 */
+      "projectFolder": "packages/[package path]", /** 包路径 */
+      "reviewCategory": "packages", /** 所属分类 */
+      "versionPolicyName": "[package policy name]" /** 版本策略名称 */
+    }
+  ]
+}
+```
