@@ -1,1 +1,1 @@
-export * from './test';
+export { default as Tentacle } from './tentacle/tentacle'

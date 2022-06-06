@@ -1,5 +1,30 @@
-# {{name}}
-> {{description}}
+# @compass-aiden/utils
+> 基础工具库
+
+## Getting Started
+
+`npm install {{name}}` 安装依赖
+
+Browser usage
+```html
+<script src="https://cdn.jsdelivr.net/npm/@compass-aiden/utils@1.0.0/dist/compass-utils.umd.min.js"></script>
+<script>
+    const _ = window['@compass-aiden/utils'];
+    console.log(_);
+</script>
+```
+
+ESModule usage
+```typescript
+import {demo} from '@compass-aiden/utils';
+demo();
+```
+
+Commonjs usage
+```typescript
+const {demo} = require('@compass-aiden/utils/dist/main.cjs');
+demo();
+```
 
 ## 目录说明
 
@@ -7,12 +32,11 @@
   * `modules-entry.js` 获取各模块文件入口
 * `coverage` 单测覆盖率报告
 * `dist` 构建产物
-  * `*.min.js` 入口文件
-  * `*.es.min.js` es module文件
-  * `*.cjs.min.js` commonjs 文件
-  * `*.umd.min.js` umd 文件
-  * `es` es 各模块文件
-  * `cjs` commonjs 各模块文件
+  * `*.es.min.js` es module 全量文件
+  * `*.cjs.min.js` commonjs 全量文件
+  * `*.umd.min.js` umd 全量文件
+  * `main.js` es 入口文件
+  * `main.cjs.js` commonjs 入口文件
 * `src` 源代码
   * `main.ts` 主入口文件
   * `modules` 各模块文件夹
@@ -34,6 +58,10 @@
 ### 单元测试
 
 `npm run test` 执行单元测试,匹配 `src/**/*.spec.ts`
+
+### 生成文档
+
+`npm run docs` 构建文档至 docs 文件夹
 
 ### 构建发布包
 
