@@ -21,7 +21,7 @@ const compressionPlugins = [
     json(),
     ts(),
     terser(),
-    cleanup({comments: 'all'}),
+    cleanup({comments: 'none'}),
     summary({
         totalLow: 1024 * 8,
         totalHigh: 1024 * 20,
@@ -45,16 +45,17 @@ export default [
     entry(moduleList, [{
         dir: 'dist',
         name: umdName,
-        format: 'cjs',
-        chunkFileNames: 'bundle/chunk.[format].[hash].js',
-        entryFileNames: '[name].[format].js',
-        sourcemap: false
-    }, {
-        dir: 'dist',
-        name: umdName,
         chunkFileNames: 'bundle/chunk.[format].[hash].js',
         entryFileNames: '[name].js',
         format: 'es',
         sourcemap: false
     }]),
+    entry(moduleList, [{
+        dir: 'dist',
+        name: umdName,
+        format: 'cjs',
+        chunkFileNames: 'bundle/chunk.[format].[hash].js',
+        entryFileNames: '[name].[format].js',
+        sourcemap: false
+    }])
 ]

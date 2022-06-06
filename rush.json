@@ -4,11 +4,13 @@
   "rushVersion": "5.71.0",
   "pnpmVersion": "6.7.1",
   "pnpmOptions": {
+    "strictPeerDependencies": false,
+    "preventManualShrinkwrapChanges": true,
     "useWorkspaces": true
   },
   "nodeSupportedVersionRange": ">=12.13.0 <13.0.0 || >=14.15.0 <15.0.0 || >=16.13.0 <17.0.0",
-   "projectFolderMinDepth": 2,
-   "projectFolderMaxDepth": 2,
+  "projectFolderMinDepth": 2,
+  "projectFolderMaxDepth": 2,
 
   "repository": {
      "url": "https://github.com/Aiden-FE/compass-artifact",
@@ -44,6 +46,12 @@
       "projectFolder": "packages/compass-eslint",
       "reviewCategory": "packages",
       "versionPolicyName": "eslint"
+    },
+    {
+      "packageName": "@compass-aiden/cli",
+      "projectFolder": "packages/compass-cli",
+      "reviewCategory": "packages",
+      "versionPolicyName": "cli"
     }
   ]
 }

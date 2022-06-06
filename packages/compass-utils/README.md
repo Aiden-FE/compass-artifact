@@ -3,7 +3,7 @@
 
 ## Getting Started
 
-`npm install {{name}}` 安装依赖
+`npm install @compass-aiden/utils` 安装依赖
 
 Browser usage
 ```html

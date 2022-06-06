@@ -9,7 +9,7 @@
   "umd:main": "dist/compass-utils.umd.min.js",
   "jsdelivr": "dist/compass-utils.umd.min.js",
   "unpkg": "dist/compass-utils.umd.min.js",
-  "types": "types/compass-utils.min.d.ts",
+  "types": "types/main.d.ts",
   "files": [
     "dist",
     "types"
