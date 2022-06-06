@@ -24,6 +24,11 @@
     "docs": "typedoc --tsconfig tsconfig.json",
     "clean": "rimraf dist && rimraf types && rimraf coverage"
   },
+  "repository": "https://github.com/Aiden-FE/compass-artifact",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
   "author": "aiden_fe@outlook.com",
   "license": "MIT",
   "devDependencies": {

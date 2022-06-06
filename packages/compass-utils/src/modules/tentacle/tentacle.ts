@@ -1,15 +1,14 @@
-import qs from 'qs'
-import Axios, {AxiosInstance, ResponseType} from 'axios'
+import qs from 'qs';
+import Axios, { AxiosInstance, ResponseType } from 'axios';
+import { merge } from 'lodash-es';
 import {
   ApiConstructor,
   ErrorInterceptorFn,
   RequestConfig,
   RequestInterceptorFn,
-  ResponseInterceptorFn
-} from "./tentacle.type";
-import {merge} from "lodash-es";
-import {ApiChainCore} from "./_core";
-import {defer} from 'rxjs'
+  ResponseInterceptorFn,
+} from './tentacle.type';
+import ApiChainCore from './_core';
 
 // 全局默认请求配置
 const defaultGlobalRequestConfig = {
@@ -20,7 +19,7 @@ const defaultGlobalRequestConfig = {
     'Content-Type': 'application/json;charset=utf-8',
   },
   withCredentials: false, // 跨域是否携带凭据
-}
+};
 
 /**
  * @description 构造请求实例
@@ -60,138 +59,154 @@ const defaultGlobalRequestConfig = {
  *    .unsubscribe() // 取消请求
  */
 export default class Tentacle {
-  private axios: AxiosInstance
-  private globalRequestConfig: RequestConfig = defaultGlobalRequestConfig
-  private errorInterceptors: ErrorInterceptorFn[] = []
-  
+  private axios: AxiosInstance;
+
+  private globalRequestConfig: RequestConfig = defaultGlobalRequestConfig;
+
+  private errorInterceptors: ErrorInterceptorFn[] = [];
+
   constructor(options?: ApiConstructor) {
-    this.globalRequestConfig = merge({}, this.globalRequestConfig, options?.config)
-    this.axios = Axios.create(this.globalRequestConfig)
-    if (options?.interceptors?.request) this.setRequestInterceptors(options.interceptors.request)
-    if (options?.interceptors?.response) this.setResponseInterceptors(options.interceptors.response)
+    this.globalRequestConfig = merge({}, this.globalRequestConfig, options?.config);
+    this.axios = Axios.create(this.globalRequestConfig);
+    if (options?.interceptors?.request) {
+      this.setRequestInterceptors(options.interceptors.request);
+    }
+    if (options?.interceptors?.response) {
+      this.setResponseInterceptors(options.interceptors.response);
+    }
     if (options?.interceptors?.error) {
-      const errorCallback = []
+      const errorCallback = [];
       if (Array.isArray(options.interceptors.error)) {
-        errorCallback.push(...options.interceptors.error)
-      } else errorCallback.push(options.interceptors.error)
-      this.errorInterceptors.push(...errorCallback)
+        errorCallback.push(...options.interceptors.error);
+      } else errorCallback.push(options.interceptors.error);
+      this.errorInterceptors.push(...errorCallback);
     }
   }
-  
-  public get (url: string) {
+
+  public get(url: string) {
     return new ApiChainCore({
       url,
       method: 'GET',
       axios: this.axios,
-    })
+    });
   }
-  public post (url: string) {
+
+  public post(url: string) {
     return new ApiChainCore({
       url,
       method: 'POST',
       axios: this.axios,
-    })
+    });
   }
-  public put (url: string) {
+
+  public put(url: string) {
     return new ApiChainCore({
       url,
       method: 'PUT',
       axios: this.axios,
-    })
+    });
   }
-  public delete (url: string) {
+
+  public delete(url: string) {
     return new ApiChainCore({
       url,
       method: 'DELETE',
       axios: this.axios,
-    })
+    });
   }
-  public patch (url: string) {
+
+  public patch(url: string) {
     return new ApiChainCore({
       url,
       method: 'PATCH',
       axios: this.axios,
-    })
+    });
   }
-  public head (url: string) {
+
+  public head(url: string) {
     return new ApiChainCore({
       url,
       method: 'HEAD',
       axios: this.axios,
-    })
+    });
   }
-  public options (url: string) {
+
+  public options(url: string) {
     return new ApiChainCore({
       url,
       method: 'OPTIONS',
       axios: this.axios,
-    })
+    });
   }
-  public purge (url: string) {
+
+  public purge(url: string) {
     return new ApiChainCore({
       url,
       method: 'PURGE',
       axios: this.axios,
-    })
+    });
   }
-  public link (url: string) {
+
+  public link(url: string) {
     return new ApiChainCore({
       url,
       method: 'LINK',
       axios: this.axios,
-    })
+    });
   }
-  public unlink (url: string) {
+
+  public unlink(url: string) {
     return new ApiChainCore({
       url,
       method: 'UNLINK',
       axios: this.axios,
-    })
+    });
   }
-  
-  private setResponseInterceptors (handleFn: ResponseInterceptorFn | ResponseInterceptorFn[]) {
-    let interceptor: ResponseInterceptorFn[]
+
+  private setResponseInterceptors(handleFn: ResponseInterceptorFn | ResponseInterceptorFn[]) {
+    let interceptor: ResponseInterceptorFn[];
     if (handleFn instanceof Array) {
-      interceptor = handleFn
-    } else interceptor = [handleFn]
-    
+      interceptor = handleFn;
+    } else interceptor = [handleFn];
+
     this.axios.interceptors.response.use((value) => {
-      let resp: any = value
+      let resp: any = value;
       if (interceptor && interceptor.length) {
-        for (let i = 0; i < interceptor.length; i++) {
+        for (let i = 0; i < interceptor.length; i += 1) {
           const fn = interceptor[i];
-          resp = fn(resp, value)
+          resp = fn(resp, value);
         }
       }
-      return resp
-    }, (error) => this.errorPipeInterceptors(error))
+      return resp;
+    }, (error) => this.errorPipeInterceptors(error));
   }
-  
-  private errorPipeInterceptors (error?: any) {
-    let err = error
+
+  private errorPipeInterceptors(error?: any) {
+    let err = error;
     if (this.errorInterceptors.length) {
-      for (let i = 0; i < this.errorInterceptors.length; i++) {
+      for (let i = 0; i < this.errorInterceptors.length; i += 1) {
         const fn = this.errorInterceptors[i];
-        err = fn(err, error)
+        err = fn(err, error);
       }
     }
-    return Promise.reject(err)
+    return Promise.reject(err);
   }
-  
-  private setRequestInterceptors (handleFn: RequestInterceptorFn | RequestInterceptorFn[]) {
-    let interceptor: RequestInterceptorFn[]
+
+  private setRequestInterceptors(handleFn: RequestInterceptorFn | RequestInterceptorFn[]) {
+    let interceptor: RequestInterceptorFn[];
     if (handleFn instanceof Array) {
-      interceptor = handleFn
-    } else interceptor = [handleFn]
-    
+      interceptor = handleFn;
+    } else interceptor = [handleFn];
+
     this.axios.interceptors.request.use((config) => {
       if (interceptor && interceptor.length) {
-        for (let i = 0; i < interceptor.length; i++) {
+        for (let i = 0; i < interceptor.length; i += 1) {
           const reqInterceptor = interceptor[i];
-          config = reqInterceptor(config)
+          // eslint-disable-next-line no-param-reassign
+          config = reqInterceptor(config);
         }
       }
-      return config
-    }, (error) => this.errorPipeInterceptors(error))
+      return config;
+    }, (error) => this.errorPipeInterceptors(error));
   }
 }

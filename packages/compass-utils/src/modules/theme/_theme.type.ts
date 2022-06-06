@@ -6,4 +6,4 @@ export interface ThemeConstructor {
 }
 
 /** 主题配置数据 */
-export type ThemeVariables = Record<string, string | number>
+export type ThemeVariables = Record<string, string | number>;

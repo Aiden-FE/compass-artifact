@@ -32,6 +32,18 @@
       "projectFolder": "packages/compass-utils",
       "reviewCategory": "packages",
       "versionPolicyName": "utils"
+    },
+    {
+      "packageName": "@compass-aiden/styles",
+      "projectFolder": "packages/compass-styles",
+      "reviewCategory": "packages",
+      "versionPolicyName": "styles"
+    },
+    {
+      "packageName": "@compass-aiden/eslint-plugin",
+      "projectFolder": "packages/compass-eslint",
+      "reviewCategory": "packages",
+      "versionPolicyName": "eslint"
     }
   ]
 }

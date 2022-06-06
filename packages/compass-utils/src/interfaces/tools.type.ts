@@ -6,7 +6,7 @@
  *   type c = ArrayConvertToUnionType<typeof a> // type: string | number
  *   type d = ArrayConvertToUnionType<b> // type: string | number
  */
-export type ArrayConvertToUnionType<T> = T extends (infer A)[] ? A : never
+export type ArrayConvertToUnionType<T> = T extends (infer A)[] ? A : never;
 
 /**
  * @description 递归设置所有属性为可选类型
@@ -38,4 +38,4 @@ export type DeepPartial<T> = {
   [U in keyof T]?: T[U] extends object
     ? DeepPartial<T[U]>
     : T[U]
-}
+};

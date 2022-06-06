@@ -8,5 +8,5 @@
  */
 export default function toArray <T = unknown>(data: T): T extends unknown[] ? T : T[] {
   // @ts-ignore
-  return Array.isArray(data) ? data : [data]
+  return Array.isArray(data) ? data : [data];
 }

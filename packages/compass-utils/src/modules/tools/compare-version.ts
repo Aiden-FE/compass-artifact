@@ -9,32 +9,32 @@
  *   compareVersion('a2.0.0', 'B1.0.0', /a|b/ig) // return 1
  *   compareVersion('v1.0.0', 'V1.0.0') // return 0
  */
-export default function compareVersion (currentVersion: string, compareVersion: string, trimSymbolPattern = /v/ig) {
-  currentVersion = currentVersion.replace(trimSymbolPattern, '');
-  compareVersion = compareVersion.replace(trimSymbolPattern, '');
-  const v1 = currentVersion.split('.')
-  const v2 = compareVersion.split('.')
-  const maxLen = Math.max(v1.length, v2.length)
-  
+export default function compareVersion(currentVersion: string, compareVersionValue: string, trimSymbolPattern = /v/ig) {
+  const currentVersionClone = currentVersion.replace(trimSymbolPattern, '');
+  const compareVersionClone = compareVersionValue.replace(trimSymbolPattern, '');
+  const v1 = currentVersionClone.split('.');
+  const v2 = compareVersionClone.split('.');
+  const maxLen = Math.max(v1.length, v2.length);
+
   // 调整两个版本号位数相同
   while (v1.length < maxLen) {
-    v1.push('0')
+    v1.push('0');
   }
   while (v2.length < maxLen) {
-    v2.push('0')
+    v2.push('0');
   }
-  
+
   // 循环判断每位数的大小
-  for (let i = 0; i < maxLen; i++) {
-    const num1 = parseInt(v1[i])
-    const num2 = parseInt(v2[i])
-    
+  for (let i = 0; i < maxLen; i += 1) {
+    const num1 = parseInt(v1[i], 10);
+    const num2 = parseInt(v2[i], 10);
+
     if (num1 > num2) {
-      return 1
-    } else if (num1 < num2) {
-      return -1
+      return 1;
+    } if (num1 < num2) {
+      return -1;
     }
   }
-  
-  return 0
+
+  return 0;
 }

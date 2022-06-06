@@ -3,6 +3,24 @@
 
 ## Exports libraries
 
+### @compass-aiden/eslint
+
+eslint默认推荐规则
+
+[Getting Started](./packages/compass-eslint/README.md)
+
+### @compass-aiden/styles
+
+基础样式库
+
+[Getting Started](./packages/compass-styles/README.md)
+
+### @compass-aiden/utils
+
+基础工具库
+
+[Getting Started](./packages/compass-utils/README.md)
+
 ## 项目开发
 
 ### 安装管理工具

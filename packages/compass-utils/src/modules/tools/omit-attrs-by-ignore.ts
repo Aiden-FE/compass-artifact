@@ -1,4 +1,4 @@
-import {omitBy} from "lodash-es";
+import { omitBy } from 'lodash-es';
 
 /**
  * @description 根据ignore忽略目标对象内匹配的属性
@@ -23,7 +23,6 @@ import {omitBy} from "lodash-es";
  *     ['a']
  *   ) // return { b: undefined, c: null, d: '', }
  */
-export default function omitAttrsByIgnore (dataObj: object, ignoreValues: unknown[] = [undefined, null, '']) {
-  return omitBy(dataObj, (val) => ignoreValues.includes(val))
+export default function omitAttrsByIgnore(dataObj: object, ignoreValues: unknown[] = [undefined, null, '']) {
+  return omitBy(dataObj, (val) => ignoreValues.includes(val));
 }
-

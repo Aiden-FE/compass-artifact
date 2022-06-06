@@ -1,0 +1,53 @@
+{
+  "name": "@compass-aiden/styles",
+  "version": "1.0.1",
+  "description": "通用样式库",
+  "main": "dist/assets/main.css",
+  "author": "Aiden_FE@outlook.com",
+  "license": "MIT",
+  "files": [
+    "lib",
+    "types"
+  ],
+  "repository": "https://github.com/Aiden-FE/compass-artifact",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "scripts": {
+    "start": "npm run dev",
+    "publish:lib": "npm run build && yarn publish --no-git-tag-version",
+    "dev": "cross-env NODE_ENV=development rollup -w -c config/rollup.config.dev.js",
+    "build": "npm run clean && cross-env NODE_ENV=production rollup -c config/rollup.config.prod.js",
+    "clean": "rimraf lib"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version",
+      "last 1 ie version"
+    ]
+  },
+  "dependencies": {
+    "cross-env": "^7.0.3"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.4",
+    "postcss": "^8.4.12",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.70.1",
+    "rollup-plugin-copy": "^3.4.0",
+    "rollup-plugin-serve": "^1.1.0",
+    "rollup-plugin-styles": "^4.0.0",
+    "stylelint": "^14.6.1",
+    "stylelint-config-standard": "^25.0.0",
+    "stylus": "^0.57.0",
+    "rollup-plugin-summary": "~1.4.3"
+  }
+}
