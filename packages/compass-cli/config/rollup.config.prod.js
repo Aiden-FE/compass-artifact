@@ -9,7 +9,10 @@ import {builtinModules} from "module";
 
 import pkg from '../package.json'
 
-const umdPlugins = [nodeResolve({ browser: false }), commonjs()];
+const umdPlugins = [
+    // nodeResolve(),
+    commonjs()
+];
 
 const compressionPlugins = [
     json(),

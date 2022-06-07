@@ -88,4 +88,5 @@ eslint默认推荐规则
 
 `rush version` 更新版本
 
-`rush publish --apply` 发布
+`cd common/autoinstallers/common-command`
+`npm run publish:all` 发布包
