@@ -19,6 +19,6 @@ export default [
             json(),
             ts(),
         ],
-        output: [{ file: pkg.main, format: 'es', sourcemap: true }],
+        output: [{ file: pkg.main, format: 'cjs', sourcemap: true }],
     },
 ]
