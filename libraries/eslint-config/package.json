@@ -1,0 +1,49 @@
+{
+  "name": "@compass-aiden/eslint-config",
+  "version": "1.2.0",
+  "description": "Recommend eslint config",
+  "main": "recommended-base.js",
+  "exports": {
+    "./js": "./recommended-javascript.js",
+    "./ts": "./recommended-typescript.js",
+    "./vue": "./recommended-vue.js",
+    "./vue2": "./recommended-vue2.js",
+    "./react": "./recommended-react.js",
+    "./angular": "./recommended-angular.js",
+    "./nest": "./recommended-nest.js"
+  },
+  "author": "Aiden_FE@outlook.com",
+  "license": "MIT",
+  "keywords": [
+    "eslint",
+    "eslintconfig",
+    "rules",
+    "recommend-rules",
+    "typescript"
+  ],
+  "repository": "https://github.com/Aiden-FE/compass-artifact",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "scripts": {
+    "build": "echo 'Not found command'",
+    "lint": "eslint . --fix --ext .js,.jsx,.ts,.tsx",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "eslint": "^8.24.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-import-resolver-node": "^0.3.6",
+    "eslint-import-resolver-typescript": "^3.5.2",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^2.8.7",
+    "typescript": "^4.8.4"
+  },
+  "peerDependencies": {
+    "eslint": ">=8.0.0",
+    "eslint-plugin-import": ">=2.0.0"
+  }
+}
