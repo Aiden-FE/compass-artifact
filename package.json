@@ -1,10 +1,9 @@
 {
-  "name": "{{name}}",
+  "name": "compass-artifact",
   "version": "1.0.0",
-  "description": "{{description}}",
+  "description": "Compass 前端综合物料平台",
   "scripts": {
-    "postinstall": "rush update && rush update-autoinstaller --name common-commands && rush install",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "postinstall": "rush update && rush update-autoinstaller --name common-commands && rush install"
   },
   "devDependencies": {
     "@commitlint/config-conventional": "^17.4.4"
