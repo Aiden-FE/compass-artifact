@@ -46,6 +46,8 @@ jobs:
         uses: advancedcsg-open/actions-rush@v1.4.5
 
       - name: Run rush Build
+        env:
+          NODE_OPTIONS: --max_old_space_size=8192
         run: node common/scripts/install-run-rush.js build
 
       - name: Deploy
