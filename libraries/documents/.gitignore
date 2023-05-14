@@ -3,3 +3,6 @@ node_modules/
 src/.vuepress/.cache/
 src/.vuepress/.temp/
 src/.vuepress/dist/
+
+# 自动生成的外部引用文件
+eslint-config/

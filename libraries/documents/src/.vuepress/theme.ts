@@ -1,13 +1,13 @@
 import { hopeTheme } from 'vuepress-theme-hope';
-import { enNavbar, zhNavbar } from './navbar/index.js';
-import { enSidebar, zhSidebar } from './sidebar/index.js';
+import { enNavbar, zhNavbar } from './navbar';
+import { enSidebar, zhSidebar } from './sidebar';
 
 export default hopeTheme({
   hostname: 'https://vuepress-theme-hope-docs-demo.netlify.app',
 
   author: {
-    name: 'Mr.Hope',
-    url: 'https://mrhope.site',
+    name: 'Aiden',
+    url: 'https://github.com/Aiden-FE',
   },
 
   iconAssets: 'iconfont',
@@ -16,7 +16,9 @@ export default hopeTheme({
 
   repo: 'Aiden-FE/compass-artifact',
 
-  docsDir: 'demo/theme-docs/src',
+  docsBranch: 'master',
+
+  docsDir: 'libraries/documents/src',
 
   locales: {
     '/en/': {
@@ -25,8 +27,6 @@ export default hopeTheme({
 
       // sidebar
       sidebar: enSidebar,
-
-      footer: 'Default footer',
 
       displayFooter: true,
 
@@ -45,8 +45,6 @@ export default hopeTheme({
       // sidebar
       sidebar: zhSidebar,
 
-      footer: '默认页脚',
-
       displayFooter: true,
 
       // page meta
@@ -56,19 +54,7 @@ export default hopeTheme({
     },
   },
 
-  encrypt: {
-    config: {
-      '/en/demo/encrypt.html': ['1234'],
-      '/demo/encrypt.html': ['1234'],
-    },
-  },
-
   plugins: {
-    comment: {
-      // @ts-expect-error: You should generate and use your own comment service
-      provider: 'Waline',
-    },
-
     // all features are enabled for demo, only preserve features you need here
     mdEnhance: {
       align: true,
@@ -91,6 +77,24 @@ export default hopeTheme({
       },
       presentation: {
         plugins: ['highlight', 'math', 'search', 'notes', 'zoom'],
+      },
+      locales: {
+        '/': {
+          info: '信息',
+          note: '注释',
+          tip: '提示',
+          warning: '警告',
+          danger: '危险',
+          details: '详情',
+        },
+        '/en/': {
+          info: 'Info',
+          note: 'Note',
+          tip: 'Tip',
+          warning: 'Warning',
+          danger: 'Danger',
+          details: 'Details',
+        },
       },
       stylize: [
         {

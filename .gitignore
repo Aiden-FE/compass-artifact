@@ -165,3 +165,7 @@ bazel-out
 # profiling files
 chrome-profiler-events*.json
 speed-measure-plugin*.json
+
+# documents临时文件
+index.html.js
+index.html.vue

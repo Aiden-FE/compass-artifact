@@ -1,31 +1,31 @@
 ---
-title: Eslint预设包
-description: 推荐的预设eslint配置
-permalink: /eslint-config/
+title: Eslint Preset Config
+description: Recommended preset eslint configurations
+permalink: /en/eslint-config/
 ---
 
 # @compass-aiden/eslint-config
 
-> 推荐预设的 eslint 配置
+> Recommended preset eslint configurations
 
-**为什么会有它?**
+**Why would there be it?**
 
-统一 Eslint 代码校验标准
+Unified eslint code verification standard.
 
-**它遵循什么标准?**
+**What standard does it follow?**
 
-将整个 Eslint 规范分为四层,先后顺序如下,后置规则覆盖前置规则:
+The entire Eslint specification is divided into four layers, in the following order, with the post-rule overwriting the pre-rule:
 
-1. Airbnb, 业内推荐度极高的标准
-2. 框架推荐标准, 适用于具体运行环境的标准,诸如 js,ts,react,vue,angular 等等
-3. 抽象的可共用标准, 填补前两条未覆盖的推荐规则或修复过于严苛难落地的规则
-4. 业务标准, 实际落地时,由业务项目再次覆盖的规则 (本库不涉及此层)
+1. Airbnb, a highly recommended standard in the industry.
+2. Framework recommended standards, applicable to specific operating environments, such as JS, TS, React, Vue, Angular, and so on.
+3. Abstract and shareable standards, filling in the recommended rules not covered by the first two items or repairing rules that are too strict to implement.
+4. Business standards, rules covered again by business projects when actually implemented (this library does not involve this layer).
 
-如您想为第三层贡献规则,请根据 ISSUES 模板的引导提交你的贡献,非常感谢.
+If you want to contribute rules for the third layer, please submit your contributions based on the guidance of the ISSUES template. Thank you very much.
 
-## 快速上手
+## Getting Started
 
-在开发环境下安装基础依赖
+Install basic dependencies in the development environment
 
 ::: tabs#npmManager
 
@@ -49,9 +49,9 @@ yarn add -D @compass-aiden/eslint-config eslint eslint-plugin-import
 
 :::
 
-### Nestjs 环境使用
+### Nestjs environment using
 
-安装前置依赖
+Install pre-dependencies
 
 ::: tabs#npmManager
 
@@ -75,7 +75,7 @@ yarn add -D eslint-config-airbnb-base eslint-config-airbnb-typescript @typescrip
 
 :::
 
-以 nest 默认模板的.eslintrc.js 为例:
+Take the '.eslintrc.js' of the nest default template as an example:
 
 ```javascript
 module.exports = {
@@ -84,7 +84,7 @@ module.exports = {
     tsconfigRootDir: __dirname,
   },
   extends: [
-    // nestjs 添加此配置
+    // Add this configuration inside nestjs
     '@compass-aiden/eslint-config/nest',
     'plugin:prettier/recommended',
   ],
@@ -98,9 +98,9 @@ module.exports = {
 };
 ```
 
-### Vue3 环境使用
+### Vue3 environment using
 
-安装前置依赖
+Install pre-dependencies
 
 ::: tabs#npmManager
 
@@ -124,7 +124,7 @@ yarn add -D eslint-plugin-vue @typescript-eslint/parser @vue/eslint-config-airbn
 
 :::
 
-以 create vue 的基础模板为例,更新.eslintrc 配置文件:
+Using the create-vue base template as an example, update the '.eslintrc' configuration file:
 
 ```javascript
 /* eslint-env node */
@@ -133,7 +133,7 @@ require('@rushstack/eslint-patch/modern-module-resolution');
 module.exports = {
   root: true,
   extends: [
-    '@compass-aiden/eslint-config/vue', // 新增此行
+    '@compass-aiden/eslint-config/vue', // Add this line
     '@vue/eslint-config-prettier',
   ],
   parserOptions: {
@@ -142,9 +142,9 @@ module.exports = {
 };
 ```
 
-### Vue2 环境使用
+### Vue2 environment using
 
-安装前置依赖
+Install pre-dependencies
 
 ::: tabs#npmManager
 
@@ -168,7 +168,7 @@ yarn add -D eslint-plugin-vue @vue/eslint-config-airbnb-with-typescript @rushsta
 
 :::
 
-.eslintrc.js 内容参考如下:
+The contents of the '.eslintrc.js' file are as follows:
 
 ```javascript
 require('@rushstack/eslint-patch/modern-module-resolution');
@@ -176,7 +176,7 @@ require('@rushstack/eslint-patch/modern-module-resolution');
 module.exports = {
   root: true,
   extends: [
-    '@compass-aiden/eslint-config/vue2', // 新增此行
+    '@compass-aiden/eslint-config/vue2', // Add this line
     '@vue/eslint-config-prettier',
   ],
   parserOptions: {
@@ -187,12 +187,12 @@ module.exports = {
 
 ::: warning
 
-如果是老项目存在异常可以尝试更新 eslint 版本,如果是 cli lint 请更新@vue/cli-plugin-eslint 版本.
+If there is an exception in the old project, you can try to update the eslint version. If it is cli lint, please update the @vue/cli-plugin-eslint version.
 :::
 
-### React 环境使用
+### React environment using
 
-安装前置依赖
+Install pre-dependencies
 
 ::: tabs#npmManager
 
@@ -216,26 +216,24 @@ yarn add -D eslint-config-airbnb eslint-plugin-jsx-a11y eslint-plugin-react esli
 
 :::
 
-更新.eslintrc 配置文件:
+Update the '.eslintrc' configuration file:
 
 ```javascript
 module.exports = {
-  // 当include lint异常时可指向正确的ts配置文件
   parserOptions: {
     project: './tsconfig.json',
   },
   extends: [
-    // react使用此配置
-    '@compass-aiden/eslint-config/react',
+    '@compass-aiden/eslint-config/react', // Add this line
   ],
 };
 ```
 
 `eslint . --fix --ext .js,.jsx,.ts,.tsx`
 
-### Angular 环境使用
+### Angular environment using
 
-安装前置依赖
+Install pre-dependencies
 
 ::: tabs#npmManager
 
@@ -259,9 +257,9 @@ yarn add -D @angular-eslint/eslint-plugin @angular-eslint/eslint-plugin-template
 
 :::
 
-`ng add @angular-eslint/schematics` cli 添加原理图
+`ng add @angular-eslint/schematics` cli add schematic
 
-lint 命令解析器调整为 `@angular-eslint/builder`
+lint command parser adjusted `@angular-eslint/builder`
 
 .eslintrc.json
 
@@ -273,12 +271,12 @@ lint 命令解析器调整为 `@angular-eslint/builder`
 
 ::: warning
 
-Angular 版尚未经过业务验证
+Angular config not yet validated for business
 :::
 
-### Typescript 环境使用
+### Typescript environment using
 
-安装前置依赖
+Install pre-dependencies
 
 ::: tabs#npmManager
 
@@ -302,24 +300,22 @@ yarn add -D eslint-config-airbnb-base eslint-config-airbnb-typescript @typescrip
 
 :::
 
-更新.eslintrc 配置文件:
+Update the '.eslintrc' configuration file:
 
 ```javascript
-// 使用eslint配置
 module.exports = {
   parserOptions: {
     project: './tsconfig.json',
   },
   extends: [
-    // typescript使用此配置
-    '@compass-aiden/eslint-config/ts',
+    '@compass-aiden/eslint-config/ts', // Add this line
   ],
 };
 ```
 
-### JavaScript 环境使用
+### JavaScript environment using
 
-安装前置依赖
+Install pre-dependencies
 
 ::: tabs#npmManager
 
@@ -343,20 +339,19 @@ yarn add -D eslint-config-airbnb-base
 
 :::
 
-更新.eslintrc 配置文件:
+Update the '.eslintrc' configuration file:
 
 ```javascript
-// 使用eslint配置
 module.exports = {
-  extends: ['@compass-aiden/eslint-config/js'],
+  extends: ['@compass-aiden/eslint-config/js'], // Add this line
 };
 ```
 
-## prettier 兼容
+## Use with prettier
 
-> 当 lint 与 prettier 一起工作时参考此引导
+> Refer to this guide when lint works with prettier
 
-安装前置依赖
+Install pre-dependencies
 
 ::: tabs#npmManager
 
@@ -380,16 +375,16 @@ yarn add -D prettier eslint-config-prettier eslint-plugin-prettier
 
 :::
 
-更新 .eslintrc 文件:
+Update the '.eslintrc' configuration file:
 
 ```javascript
 module.exports = {
-  plugins: ['prettier'], // 增加此项
+  plugins: ['prettier'], // Add this line
   extends: [
-    'plugin:prettier/recommended', // 增加此项
+    'plugin:prettier/recommended', // Add this line
   ],
   rules: {
-    'prettier/prettier': 'error', // 增加此项
+    'prettier/prettier': 'error', // Add this line
   },
 };
 ```
