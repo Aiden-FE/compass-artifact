@@ -5,15 +5,18 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "build": "vuepress build src",
+    "build": "vuepress build src && npm run postbuild",
     "clean-dev": "vuepress dev src --clean-cache",
     "dev": "vuepress dev src",
-    "update-package": "pnpm dlx vp-update"
+    "update-package": "pnpm dlx vp-update",
+    "postbuild": "rimraf src/.vuepress/temp"
   },
   "devDependencies": {
     "@vuepress/client": "2.0.0-beta.62",
-    "vue": "^3.2.47",
+    "vue": "^3.3.2",
     "vuepress": "2.0.0-beta.62",
-    "vuepress-theme-hope": "2.0.0-beta.210"
+    "vuepress-theme-hope": "2.0.0-beta.210",
+    "@types/node": "~20.1.4",
+    "rimraf": "~5.0.0"
   }
 }
