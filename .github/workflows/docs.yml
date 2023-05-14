@@ -31,6 +31,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
 
       - name: 设置 Node.js
         uses: actions/setup-node@v3
@@ -44,7 +46,7 @@ jobs:
         uses: advancedcsg-open/actions-rush@v1.4.5
 
       - name: Run rush Build
-        run: rush build
+        run: node common/scripts/install-run-rush.js build
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
