@@ -48,7 +48,7 @@ jobs:
       - name: Run rush Build
         env:
           NODE_OPTIONS: --max_old_space_size=8192
-        run: node common/scripts/install-run-rush.js build
+        run: node common/scripts/install-run-rush.js build 1>&2
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4

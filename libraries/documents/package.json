@@ -5,7 +5,7 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "build": "vuepress build src",
+    "build": "cross-env NODE_OPTIONS=\"--max_old_space_size=8192\" vuepress build src",
     "clean-dev": "vuepress dev src --clean-cache",
     "dev": "vuepress dev src",
     "update-package": "pnpm dlx vp-update",
@@ -17,6 +17,7 @@
     "vuepress": "2.0.0-beta.62",
     "vuepress-theme-hope": "2.0.0-beta.210",
     "@types/node": "~20.1.4",
-    "rimraf": "~5.0.0"
+    "rimraf": "~5.0.0",
+    "cross-env": "~7.0.3"
   }
 }
