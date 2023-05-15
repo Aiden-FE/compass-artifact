@@ -2,4 +2,4 @@
 User-agent:*
 Disallow:
 
-Sitemap: https://aiden-fe.github.io/./sitemap.xml
+Sitemap: https://aiden-fe.github.io/compass-artifact/sitemap.xml
