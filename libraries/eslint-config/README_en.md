@@ -1,7 +1,7 @@
 ---
 title: Eslint Preset Config
 description: Recommended preset eslint configurations
-permalink: /en/eslint-config/
+permalink: /compass-artifact/en/eslint-config/
 ---
 
 # @compass-aiden/eslint-config
