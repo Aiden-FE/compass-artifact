@@ -10,19 +10,21 @@ import fs from 'node:fs';
 
 const IS_PROD = process.env.NODE_ENV === 'production';
 
+function resolver(path) {
+  return path.join(__dirname, path);
+}
+
 if (IS_PROD) {
-  fs.mkdirSync(path.join(__dirname, './temp/eslint-config'), { recursive: true });
-  const mdFiles = findFilesInFolder(path.join(__dirname, '../../../eslint-config'), /.md$/i);
-  console.log('files: ', mdFiles, path.join(__dirname, './temp/eslint-config'));
-  cpFiles(mdFiles, path.join(__dirname, './temp/eslint-config'));
-  child_process.execSync('pwd', { stdio: 'inherit' });
-  child_process.execSync('ls ./temp', { stdio: 'inherit' });
+  const mdFiles = findFilesInFolder(resolver('../../../eslint-config'), /.md$/i);
+  console.log('Get files: ', mdFiles, resolver('./temp/**/*.md'));
+  cpFiles(mdFiles, resolver('./temp/eslint-config'));
+  child_process.execSync(`ls ${resolver('./temp/eslint-config')}`, { stdio: 'inherit' });
 }
 
 export default defineUserConfig({
   base: IS_PROD ? '/compass-artifact/' : '/',
   pagePatterns: ['**/*.md', '!.vuepress', '!node_modules'].concat(
-    IS_PROD ? ['./temp/**/*.md'] : ['../../eslint-config/**/*.md', '!../../eslint-config/node_modules'],
+    IS_PROD ? [resolver('./temp/**/*.md')] : ['../../eslint-config/**/*.md', '!../../eslint-config/node_modules'],
   ),
   locales: {
     '/en/': {
