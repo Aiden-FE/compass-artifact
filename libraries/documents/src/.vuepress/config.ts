@@ -9,7 +9,7 @@ import { findFilesInFolder, cpFiles } from '../utils/index';
 const IS_PROD = process.env.NODE_ENV === 'production';
 
 if (IS_PROD) {
-  child_process.execSync('mkdir ./temp/eslint-config', { stdio: 'inherit' });
+  child_process.execSync(`mkdir ${path.join(__dirname, './temp/eslint-config')}`, { stdio: 'inherit' });
   const mdFiles = findFilesInFolder(path.join(__dirname, '../../../eslint-config'), /.md$/i);
   console.log('files: ', mdFiles, path.join(__dirname, './temp/eslint-config'));
   cpFiles(mdFiles, path.join(__dirname, './temp/eslint-config'));
