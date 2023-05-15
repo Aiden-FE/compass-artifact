@@ -34,10 +34,32 @@ jobs:
         with:
           fetch-depth: 2
 
+      - name: Setup
+        uses: gigara/rush-cache@v2
+
       - name: 设置 Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
+
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 7.27.1
+
+      - name: Cache Rush
+        uses: actions/cache@v2
+        with:
+          path: |
+            common/temp/install-run
+            ~/.rush
+          key: Rush-cache-${{ hashFiles('rush.json') }}
+      - name: Cache pnpm
+        uses: actions/cache@v3
+        with:
+          path: |
+            common/temp/pnpm-store
+          #            ~/.cache/Cypress
+          key: pnpm-cache-${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
 
       - name: Install rush cli
         run: node common/scripts/install-run-rush.js install
@@ -46,7 +68,7 @@ jobs:
         env:
           NODE_ENV: production
           NODE_OPTIONS: --max_old_space_size=8192
-        run: node common/scripts/install-run-rush.js build || true
+        run: node common/scripts/install-run-rush.js build --verbose || true
 
       - name: Deploy GitHub Pages site
         uses: JamesIves/github-pages-deploy-action@v4

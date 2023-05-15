@@ -4,6 +4,11 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/rush/v5/rush-plugins.schema.json",
   "plugins": [
+    {
+      "packageName": "@gigara/rush-github-action-build-cache-plugin",
+      "pluginName": "rush-github-action-build-cache-plugin",
+      "autoinstallerName": "common-commands"
+    }
     /**
      * Each item configures a plugin to be loaded by Rush.
      */

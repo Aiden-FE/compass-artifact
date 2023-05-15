@@ -3,7 +3,7 @@ import { enNavbar, zhNavbar } from './navbar';
 import { enSidebar, zhSidebar } from './sidebar';
 
 export default hopeTheme({
-  hostname: 'https://aiden-fe.github.io/compass-artifact/',
+  hostname: 'https://aiden-fe.github.io',
 
   author: {
     name: 'Aiden',

@@ -1,4 +1,4 @@
-import { defineUserConfig, viteBundler } from 'vuepress';
+import { defineUserConfig } from 'vuepress';
 // @ts-ignore
 import path from 'node:path';
 import theme from './theme.js';
@@ -8,13 +8,13 @@ const IS_PROD = process.env.NODE_ENV === 'production';
 
 if (IS_PROD) {
   const mdFiles = findFilesInFolder(path.join(__dirname, '../../../eslint-config'), /.md$/i);
-  cpFiles(mdFiles, path.join(__dirname, './temp'));
+  cpFiles(mdFiles, path.join(__dirname, './temp/eslint-config'));
 }
 
 export default defineUserConfig({
   base: IS_PROD ? '/compass-artifact/' : '/',
   pagePatterns: ['**/*.md', '!.vuepress', '!node_modules'].concat(
-    IS_PROD ? ['./temp'] : ['../../eslint-config/**/*.md'],
+    IS_PROD ? ['./temp/**/*.md'] : ['../../eslint-config/**/*.md'],
   ),
   locales: {
     '/en/': {
