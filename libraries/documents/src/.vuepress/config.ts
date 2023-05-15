@@ -16,15 +16,15 @@ function resolver(path) {
 
 if (IS_PROD) {
   const mdFiles = findFilesInFolder(resolver('../../../eslint-config'), /.md$/i);
-  console.log('Get files: ', mdFiles, resolver('./temp/**/*.md'));
   cpFiles(mdFiles, resolver('./temp/eslint-config'));
-  child_process.execSync(`ls ${resolver('./temp/eslint-config')}`, { stdio: 'inherit' });
 }
 
 export default defineUserConfig({
   base: IS_PROD ? '/compass-artifact/' : '/',
   pagePatterns: ['**/*.md', '!.vuepress', '!node_modules'].concat(
-    IS_PROD ? [resolver('./temp/**/*.md')] : ['../../eslint-config/**/*.md', '!../../eslint-config/node_modules'],
+    IS_PROD
+      ? ['./temp/**/*.md', './src/.vuepress/temp/**/*.md']
+      : ['../../eslint-config/**/*.md', '!../../eslint-config/node_modules'],
   ),
   locales: {
     '/en/': {
