@@ -35,6 +35,7 @@ export function cpFiles(filesPath, targetPath) {
     fs.statSync(targetPath);
   } catch {
     fs.mkdirSync(targetPath, { recursive: true });
+    console.log('收到异常,创建目标文件夹');
   }
   filesPath.map((filePath) => {
     fs.copyFileSync(filePath, path.join(targetPath, filePath.split(os.type() === 'Windows_NT' ? '\\' : '/').pop()));

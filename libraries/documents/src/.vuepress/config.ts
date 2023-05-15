@@ -10,12 +10,15 @@ import fs from 'node:fs';
 
 const IS_PROD = process.env.NODE_ENV === 'production';
 
+console.log('Env: ', process.env.NODE_ENV);
+
 function resolver(path) {
   return path.join(__dirname, path);
 }
 
 if (IS_PROD) {
   const mdFiles = findFilesInFolder(resolver('../../../eslint-config'), /.md$/i);
+  console.log('Get files: ', mdFiles);
   cpFiles(mdFiles, resolver('./temp/eslint-config'));
 }
 
