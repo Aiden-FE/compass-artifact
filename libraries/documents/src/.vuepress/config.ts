@@ -2,6 +2,8 @@ import { defineUserConfig } from 'vuepress';
 // @ts-ignore
 import path from 'node:path';
 import theme from './theme.js';
+// @ts-ignore
+import child_process from 'node:child_process';
 import { findFilesInFolder, cpFiles } from '../utils/index';
 
 const IS_PROD = process.env.NODE_ENV === 'production';
@@ -9,12 +11,13 @@ const IS_PROD = process.env.NODE_ENV === 'production';
 if (IS_PROD) {
   const mdFiles = findFilesInFolder(path.join(__dirname, '../../../eslint-config'), /.md$/i);
   cpFiles(mdFiles, path.join(__dirname, './temp/eslint-config'));
+  child_process.execSync('ls ./temp/eslint-config', { stdio: 'inherit' });
 }
 
 export default defineUserConfig({
   base: IS_PROD ? '/compass-artifact/' : '/',
   pagePatterns: ['**/*.md', '!.vuepress', '!node_modules'].concat(
-    IS_PROD ? ['./temp/**/*.md'] : ['../../eslint-config/**/*.md'],
+    IS_PROD ? ['./temp/**/*.md'] : ['../../eslint-config/**/*.md', '!../../eslint-config/node_modules'],
   ),
   locales: {
     '/en/': {
