@@ -20,7 +20,8 @@ if (IS_PROD) {
 }
 
 export default defineUserConfig({
-  base: IS_PROD ? '/compass-artifact/' : '/',
+  // @ts-ignore
+  base: IS_PROD ? './' : '/',
   pagePatterns: ['**/*.md', '!.vuepress', '!node_modules'].concat(
     IS_PROD
       ? [resolver('./temp/**/*.md'), '**/temp/**/*.md']
