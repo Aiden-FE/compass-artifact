@@ -12,8 +12,8 @@ const IS_PROD = process.env.NODE_ENV === 'production';
 
 console.log('Env: ', process.env.NODE_ENV);
 
-function resolver(path) {
-  return path.join(__dirname, path);
+function resolver(...paths) {
+  return path.join(__dirname, ...paths);
 }
 
 if (IS_PROD) {
@@ -26,7 +26,7 @@ export default defineUserConfig({
   base: IS_PROD ? '/compass-artifact/' : '/',
   pagePatterns: ['**/*.md', '!.vuepress', '!node_modules'].concat(
     IS_PROD
-      ? ['./temp/**/*.md', './src/.vuepress/temp/**/*.md']
+      ? [resolver('./temp/**/*.md'), './src/.vuepress/temp/**/*.md']
       : ['../../eslint-config/**/*.md', '!../../eslint-config/node_modules'],
   ),
   locales: {
