@@ -34,7 +34,7 @@ export function cpFiles(filesPath, targetPath) {
   try {
     fs.statSync(targetPath);
   } catch {
-    fs.mkdirSync(targetPath);
+    fs.mkdirSync(targetPath, { recursive: true });
   }
   filesPath.map((filePath) => {
     fs.copyFileSync(filePath, path.join(targetPath, filePath.split(os.type() === 'Windows_NT' ? '\\' : '/').pop()));

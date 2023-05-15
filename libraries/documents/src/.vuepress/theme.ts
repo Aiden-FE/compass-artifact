@@ -3,7 +3,7 @@ import { enNavbar, zhNavbar } from './navbar';
 import { enSidebar, zhSidebar } from './sidebar';
 
 export default hopeTheme({
-  hostname: 'https://vuepress-theme-hope-docs-demo.netlify.app',
+  hostname: 'https://aiden-fe.github.io/compass-artifact/',
 
   author: {
     name: 'Aiden',
