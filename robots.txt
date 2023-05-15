@@ -2,4 +2,4 @@
 User-agent:*
 Disallow:
 
-Sitemap: https://vuepress-theme-hope-docs-demo.netlify.app/compass-artifact/sitemap.xml
+Sitemap: https://aiden-fe.github.io/compass-artifact/compass-artifact/sitemap.xml
