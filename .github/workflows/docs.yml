@@ -50,8 +50,7 @@ jobs:
           NODE_OPTIONS: --max_old_space_size=8192
         run: node common/scripts/install-run-rush.js build || true
 
-      - name: Deploy
+      - name: Deploy GitHub Pages site
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: gh-pages
           folder: ./libraries/documents/src/.vuepress/dist
