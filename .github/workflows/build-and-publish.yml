@@ -1,8 +1,5 @@
-# Sample workflow for building and deploying a Nuxt site to GitHub Pages
-#
-# To get started with Nuxt see: https://nuxtjs.org/docs/get-started/installation
-#
-name: Deploy document site to Pages
+# 提交代码至master前 需要对pull_request进行检查: lint/test/
+name: Build and publish
 
 on:
   # Runs on pushes targeting the default branch
@@ -10,7 +7,7 @@ on:
     branches: ['master']
 
   # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+#  workflow_dispatch:
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
@@ -21,31 +18,36 @@ permissions:
 # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
 # However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
 concurrency:
-  group: 'pages'
+  group: 'build-and-publish'
   cancel-in-progress: false
 
 jobs:
   # Build job
-  build-and-deploy-pages:
+  build-and-publish:
     runs-on: ubuntu-latest
     steps:
+      # 签出分支
       - name: Checkout
         uses: actions/checkout@v3
         with:
           fetch-depth: 2
 
-      - name: Setup
+      # 设置rush cache
+      - name: Setup cache
         uses: gigara/rush-cache@v2
 
-      - name: 设置 Node.js
+      # 设置 node
+      - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: 18
 
+      # 设置pnpm
       - uses: pnpm/action-setup@v2
         with:
           version: 7.27.1
 
+      # 设置 rush 缓存文件
       - name: Cache Rush
         uses: actions/cache@v2
         with:
@@ -53,6 +55,8 @@ jobs:
             common/temp/install-run
             ~/.rush
           key: Rush-cache-${{ hashFiles('rush.json') }}
+
+      # 设置 pnpm 缓存文件
       - name: Cache pnpm
         uses: actions/cache@v3
         with:
@@ -61,16 +65,39 @@ jobs:
           #            ~/.cache/Cypress
           key: pnpm-cache-${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
 
+      # 设置 git
+      - name: Setup git
+        run: |
+          git config --local user.email aiden_fe@users.noreply.github.com
+          git config --local user.name AidenFEBot
+
+      # rush 安装
       - name: Install rush cli
         run: node common/scripts/install-run-rush.js install
 
+      # 构建整个仓库项目
       - name: Run rush Build
         env:
           NODE_ENV: production
           NODE_OPTIONS: --max_old_space_size=8192
-        run: node common/scripts/install-run-rush.js build --verbose || true
+        run: node common/scripts/install-run-rush.js build --verbose
 
+      # 部署网站
       - name: Deploy GitHub Pages site
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: ./libraries/documents/src/.vuepress/dist
+
+      # 变更检查
+      - name: Check change
+        run: node common/scripts/install-run-rush.js change --verify
+
+      # 应用变更
+      - name: Apply change
+        run: node common/scripts/install-run-rush.js version --bump --target-branch master
+
+      # 发布变更包
+      - name: Publish
+        env:
+          NPM_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+        run: rush publish --publish --include-all

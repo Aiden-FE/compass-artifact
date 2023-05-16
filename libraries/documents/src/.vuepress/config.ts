@@ -2,11 +2,7 @@ import { defineUserConfig } from 'vuepress';
 // @ts-ignore
 import path from 'node:path';
 import theme from './theme.js';
-// @ts-ignore
-import child_process from 'node:child_process';
 import { findFilesInFolder, cpFiles } from '../utils/index';
-// @ts-ignore
-import fs from 'node:fs';
 
 const IS_PROD = process.env.NODE_ENV === 'production';
 

@@ -8,7 +8,6 @@ importers:
     specifiers:
       '@types/node': ~20.1.4
       '@vuepress/client': 2.0.0-beta.62
-      cross-env: ~7.0.3
       rimraf: ~5.0.0
       vue: ^3.3.2
       vuepress: 2.0.0-beta.62
@@ -16,7 +15,6 @@ importers:
     devDependencies:
       '@types/node': 20.1.4
       '@vuepress/client': 2.0.0-beta.62
-      cross-env: 7.0.3
       rimraf: 5.0.0
       vue: 3.3.2
       vuepress: 2.0.0-beta.62_4fev6mlmk2iomtnboyltaesjvq
@@ -3356,15 +3354,6 @@ packages:
       { integrity: sha512-AzlgcsCbUMymkADOJtQm3wO9S3ltPfYOFD5033keQn9NJzIbtnZj+UdBJe7DYml/8TdbtHJW3j58SOnKhWY/5g== }
     dependencies:
       layout-base: 2.0.1
-    dev: true
-
-  /cross-env/7.0.3:
-    resolution:
-      { integrity: sha512-+/HKd6EgcQCJGh2PSjZuUitQBQynKor4wrFbRg4DtAgS1aWO+gU52xpH7M9ScGgXSYmAVS9bIJ8EzuaGw0oNAw== }
-    engines: { node: '>=10.14', npm: '>=6', yarn: '>=1' }
-    hasBin: true
-    dependencies:
-      cross-spawn: 7.0.3
     dev: true
 
   /cross-spawn/7.0.3:
