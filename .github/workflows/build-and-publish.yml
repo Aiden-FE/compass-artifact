@@ -100,4 +100,4 @@ jobs:
       - name: Publish
         env:
           NPM_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
-        run: rush publish --publish --include-all
+        run: node common/scripts/install-run-rush.js publish --publish --include-all
