@@ -393,3 +393,24 @@ module.exports = {
   },
 };
 ```
+
+## 常见问题
+
+### Unknown compiler option 'preserveValueImports'
+
+问题可能发生在 Monorepo 项目内,由于 typescript 依赖包发生变量提升与其他包有冲突,可通过禁止 typescript 包依赖提升即可修复
+
+### Parsing error: ImportDeclaration should appear when the mode is ES6 and in the module context
+
+.eslintrc 文件内 加入以下设置即可
+
+```json
+{
+  "parserOptions": {
+    "ecmaVersion": 2022,
+    "ecmaFeatures": {
+      "modules": true
+    }
+  }
+}
+```
