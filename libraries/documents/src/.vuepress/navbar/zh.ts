@@ -12,6 +12,12 @@ export const zhNavbar = navbar([
         link: '/eslint-config/',
         children: [],
       },
+      {
+        text: '选型推荐',
+        icon: 'selection',
+        link: '/awesome/',
+        children: [],
+      },
     ],
   },
 ]);

@@ -12,6 +12,12 @@ export const enNavbar = navbar([
         link: '/en/eslint-config/',
         children: [],
       },
+      {
+        text: 'Selection Recommendation',
+        icon: 'selection',
+        link: '/en/awesome/',
+        children: [],
+      },
     ],
   },
 ]);
