@@ -14,6 +14,11 @@ export default function encodePhoneNumber(
     isCountry?: boolean;
     /** 国际区号后的分割符, 如 +86 176的分割符为' ' */
     countryAfterSymbol?: string;
+    /**
+     * @description 掩码的替换字符
+     * @default *
+     */
+    maskChar?: string;
   },
 ) {
   const opts = {
@@ -21,12 +26,13 @@ export default function encodePhoneNumber(
     countryAfterSymbol: ' ',
     encodeLength: 4,
     offsetLength: 3,
+    maskChar: '*',
     ...options,
   };
   const phoneNum = opts.isCountry ? phone.split(opts.countryAfterSymbol)[1] : phone;
   const maskNum =
     phoneNum.slice(0, opts.offsetLength) +
-    phoneNum.slice(opts.offsetLength, opts.offsetLength + opts.encodeLength).replace(/[0-9]/g, '*') +
+    phoneNum.slice(opts.offsetLength, opts.offsetLength + opts.encodeLength).replace(/[0-9]/g, opts.maskChar) +
     phoneNum.slice(opts.offsetLength + opts.encodeLength, phoneNum.length);
   return opts.isCountry ? `${phone.split(opts.countryAfterSymbol)[0]}${opts.countryAfterSymbol}${maskNum}` : maskNum;
 }

@@ -11,6 +11,10 @@ features:
     icon: shell
     details: Compass 多功能脚手架
     link: /commander/
+  - title: Compass 工具函数库
+    icon: module
+    details: Compass 通用工具函数库
+    link: /utils/
   - title: eslint 预设
     icon: linter
     details: 推荐的默认eslint配置,适用于多种开发环境

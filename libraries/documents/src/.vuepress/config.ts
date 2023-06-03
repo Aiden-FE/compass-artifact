@@ -17,6 +17,8 @@ if (IS_PROD) {
   cpFiles(commanderFiles, resolver('../temp/commander'));
   const stylesFiles = findFilesInFolder(resolver('../../../styles'), /.md$/i);
   cpFiles(stylesFiles, resolver('../temp/styles'));
+  const utilsFiles = findFilesInFolder(resolver('../../../utils'), /.md$/i);
+  cpFiles(utilsFiles, resolver('../temp/utils'));
 }
 
 export default defineUserConfig({
@@ -32,6 +34,8 @@ export default defineUserConfig({
           '!../../commander/node_modules',
           '../../styles/**/*.md',
           '!../../styles/node_modules',
+          '../../utils/**/*.md',
+          '!../../utils/node_modules',
         ],
   ),
   locales: {

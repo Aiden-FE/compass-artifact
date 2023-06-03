@@ -3,13 +3,13 @@
  * @param promise
  * @param [errorExt] 希望附加的额外错误信息数据
  */
-export default function promiseTask<Result = unknown, Err = Error>(
+export default function promiseTask<Result = unknown, ExtraProperty extends object = object>(
   promise: Promise<Result>,
-  errorExt?: object,
-): Promise<[any | null, Result | null]> {
+  errorExt?: ExtraProperty,
+): Promise<[(Error & ExtraProperty) | Error | null, Result | null]> {
   return promise
     .then<[null, Result]>((data: Result) => [null, data])
-    .catch<[Err, null]>((err: Err) => {
+    .catch<[(Error & ExtraProperty) | Error, null]>((err: Error) => {
       if (errorExt) {
         return [{ ...err, ...errorExt }, null];
       }
