@@ -46,7 +46,7 @@
   },
   "homepage": "https://github.com/Aiden-FE/compass-commander#readme",
   "devDependencies": {
-    "@compass-aiden/eslint-config": "^1.2.1",
+    "@compass-aiden/eslint-config": "workspace:*",
     "@rollup/plugin-commonjs": "^22.0.2",
     "@rollup/plugin-json": "^4.1.0",
     "@types/adm-zip": "^0.5.0",
@@ -63,6 +63,7 @@
     "eslint-config-prettier": "^8.7.0",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^2.8.8",
     "rimraf": "^3.0.2",
     "rollup": "^2.79.1",
     "rollup-plugin-cleanup": "^3.2.1",

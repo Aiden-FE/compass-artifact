@@ -6,7 +6,7 @@ importers:
 
   ../../libraries/commander:
     specifiers:
-      '@compass-aiden/eslint-config': ^1.2.1
+      '@compass-aiden/eslint-config': workspace:*
       '@rollup/plugin-commonjs': ^22.0.2
       '@rollup/plugin-json': ^4.1.0
       '@types/adm-zip': ^0.5.0
@@ -30,6 +30,7 @@ importers:
       inquirer: ^9.1.4
       lodash-es: ^4.17.21
       ora: ^6.1.2
+      prettier: ^2.8.8
       rimraf: ^3.0.2
       rollup: ^2.79.1
       rollup-plugin-cleanup: ^3.2.1
@@ -50,7 +51,7 @@ importers:
       shelljs: 0.8.5
       template-file: 6.0.1
     devDependencies:
-      '@compass-aiden/eslint-config': 1.5.3_e43qr7ng6kygh3xxr4conxr2wi
+      '@compass-aiden/eslint-config': link:../eslint-config
       '@rollup/plugin-commonjs': 22.0.2_rollup@2.79.1
       '@rollup/plugin-json': 4.1.0_rollup@2.79.1
       '@types/adm-zip': 0.5.0
@@ -66,7 +67,8 @@ importers:
       eslint-config-airbnb-typescript: 17.0.0_g6brmt5rohuuf7zlrxnggkkc5u
       eslint-config-prettier: 8.8.0_eslint@8.40.0
       eslint-plugin-import: 2.27.5_eslint@8.40.0
-      eslint-plugin-prettier: 4.2.1_baki42r6rxhayluo3pqw6hntde
+      eslint-plugin-prettier: 4.2.1_mnhdxnhvwtt24ndv5d2pwtkrna
+      prettier: 2.8.8
       rimraf: 3.0.2
       rollup: 2.79.1
       rollup-plugin-cleanup: 3.2.1_rollup@2.79.1
@@ -142,7 +144,7 @@ importers:
 
   ../../libraries/utils:
     specifiers:
-      '@compass-aiden/eslint-config': ^1.2.1
+      '@compass-aiden/eslint-config': workspace:*
       '@rollup/plugin-commonjs': ~23.0.7
       '@rollup/plugin-json': ~5.0.2
       '@rollup/plugin-node-resolve': ~15.0.1
@@ -159,6 +161,7 @@ importers:
       eslint-plugin-import: ^2.27.5
       eslint-plugin-prettier: ^4.2.1
       jest: ~29.2.2
+      prettier: ^2.8.8
       rimraf: ~3.0.2
       rollup: ~2.79.1
       rollup-plugin-cleanup: ~3.2.1
@@ -168,7 +171,7 @@ importers:
       ts-jest: ~29.0.5
       typescript: ~4.8.4
     devDependencies:
-      '@compass-aiden/eslint-config': 1.5.3_e55ds5l35gpamu3vxkmffm35ca
+      '@compass-aiden/eslint-config': link:../eslint-config
       '@rollup/plugin-commonjs': 23.0.7_rollup@2.79.1
       '@rollup/plugin-json': 5.0.2_rollup@2.79.1
       '@rollup/plugin-node-resolve': 15.0.2_rollup@2.79.1
@@ -183,8 +186,9 @@ importers:
       eslint-config-airbnb-typescript: 17.0.0_byygphixocdce6z2hx7q7biaoa
       eslint-config-prettier: 8.8.0_eslint@8.26.0
       eslint-plugin-import: 2.27.5_eslint@8.26.0
-      eslint-plugin-prettier: 4.2.1_axozwh45oij27ng5volxe663vy
+      eslint-plugin-prettier: 4.2.1_rmfcpgisdypnix65xxlt5zdo7q
       jest: 29.2.2_@types+node@18.7.23
+      prettier: 2.8.8
       rimraf: 3.0.2
       rollup: 2.79.1
       rollup-plugin-cleanup: 3.2.1_rollup@2.79.1
@@ -1529,28 +1533,6 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
-
-  /@compass-aiden/eslint-config/1.5.3_e43qr7ng6kygh3xxr4conxr2wi:
-    resolution:
-      { integrity: sha512-ABEhhmbj5sIKNWnLK16ATLQRvWgE2ogRzfUwNgiiHZtmNvvB3cjtNVPhXCcBVTT+QpwNtE/dgzJQt+MEpt9uuw== }
-    peerDependencies:
-      eslint: '>=8.0.0'
-      eslint-plugin-import: '>=2.0.0'
-    dependencies:
-      eslint: 8.40.0
-      eslint-plugin-import: 2.27.5_eslint@8.40.0
-    dev: true
-
-  /@compass-aiden/eslint-config/1.5.3_e55ds5l35gpamu3vxkmffm35ca:
-    resolution:
-      { integrity: sha512-ABEhhmbj5sIKNWnLK16ATLQRvWgE2ogRzfUwNgiiHZtmNvvB3cjtNVPhXCcBVTT+QpwNtE/dgzJQt+MEpt9uuw== }
-    peerDependencies:
-      eslint: '>=8.0.0'
-      eslint-plugin-import: '>=2.0.0'
-    dependencies:
-      eslint: 8.26.0
-      eslint-plugin-import: 2.27.5_eslint@8.26.0
-    dev: true
 
   /@esbuild/android-arm/0.17.19:
     resolution:
@@ -6078,40 +6060,6 @@ packages:
       tsconfig-paths: 3.14.2
     dev: true
 
-  /eslint-plugin-prettier/4.2.1_axozwh45oij27ng5volxe663vy:
-    resolution:
-      { integrity: sha512-f/0rXLXUt0oFYs8ra4w49wYZBG5GKZpAYsJSm6rnYL5uVDjd+zowwMwVZHnAjf4edNrKpCDYfXDgmRE/Ak7QyQ== }
-    engines: { node: '>=12.0.0' }
-    peerDependencies:
-      eslint: '>=7.28.0'
-      eslint-config-prettier: '*'
-      prettier: '>=2.0.0'
-    peerDependenciesMeta:
-      eslint-config-prettier:
-        optional: true
-    dependencies:
-      eslint: 8.26.0
-      eslint-config-prettier: 8.8.0_eslint@8.26.0
-      prettier-linter-helpers: 1.0.0
-    dev: true
-
-  /eslint-plugin-prettier/4.2.1_baki42r6rxhayluo3pqw6hntde:
-    resolution:
-      { integrity: sha512-f/0rXLXUt0oFYs8ra4w49wYZBG5GKZpAYsJSm6rnYL5uVDjd+zowwMwVZHnAjf4edNrKpCDYfXDgmRE/Ak7QyQ== }
-    engines: { node: '>=12.0.0' }
-    peerDependencies:
-      eslint: '>=7.28.0'
-      eslint-config-prettier: '*'
-      prettier: '>=2.0.0'
-    peerDependenciesMeta:
-      eslint-config-prettier:
-        optional: true
-    dependencies:
-      eslint: 8.40.0
-      eslint-config-prettier: 8.8.0_eslint@8.40.0
-      prettier-linter-helpers: 1.0.0
-    dev: true
-
   /eslint-plugin-prettier/4.2.1_mnhdxnhvwtt24ndv5d2pwtkrna:
     resolution:
       { integrity: sha512-f/0rXLXUt0oFYs8ra4w49wYZBG5GKZpAYsJSm6rnYL5uVDjd+zowwMwVZHnAjf4edNrKpCDYfXDgmRE/Ak7QyQ== }
@@ -6126,6 +6074,24 @@ packages:
     dependencies:
       eslint: 8.40.0
       eslint-config-prettier: 8.8.0_eslint@8.40.0
+      prettier: 2.8.8
+      prettier-linter-helpers: 1.0.0
+    dev: true
+
+  /eslint-plugin-prettier/4.2.1_rmfcpgisdypnix65xxlt5zdo7q:
+    resolution:
+      { integrity: sha512-f/0rXLXUt0oFYs8ra4w49wYZBG5GKZpAYsJSm6rnYL5uVDjd+zowwMwVZHnAjf4edNrKpCDYfXDgmRE/Ak7QyQ== }
+    engines: { node: '>=12.0.0' }
+    peerDependencies:
+      eslint: '>=7.28.0'
+      eslint-config-prettier: '*'
+      prettier: '>=2.0.0'
+    peerDependenciesMeta:
+      eslint-config-prettier:
+        optional: true
+    dependencies:
+      eslint: 8.26.0
+      eslint-config-prettier: 8.8.0_eslint@8.26.0
       prettier: 2.8.8
       prettier-linter-helpers: 1.0.0
     dev: true
