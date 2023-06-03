@@ -15,6 +15,8 @@ if (IS_PROD) {
   cpFiles(mdFiles, resolver('../temp/eslint-config'));
   const commanderFiles = findFilesInFolder(resolver('../../../commander'), /.md$/i);
   cpFiles(commanderFiles, resolver('../temp/commander'));
+  const stylesFiles = findFilesInFolder(resolver('../../../styles'), /.md$/i);
+  cpFiles(stylesFiles, resolver('../temp/styles'));
 }
 
 export default defineUserConfig({
@@ -28,18 +30,20 @@ export default defineUserConfig({
           '!../../eslint-config/node_modules',
           '../../commander/**/*.md',
           '!../../commander/node_modules',
+          '../../styles/**/*.md',
+          '!../../styles/node_modules',
         ],
   ),
   locales: {
     '/en/': {
       lang: 'en-US',
       title: 'Compass',
-      description: 'Compass front-end integrated material platform',
+      description: 'Compass infrastructure platform',
     },
     '/': {
       lang: 'zh-CN',
       title: 'Compass',
-      description: 'Compass 前端综合物料平台',
+      description: 'Compass 基础设施平台',
     },
   },
 

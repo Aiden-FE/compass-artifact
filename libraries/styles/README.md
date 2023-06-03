@@ -1,12 +1,18 @@
+---
+title: Compass 样式库
+description: Compass 通用样式库
+permalink: /styles/
+---
+
 # @compass-aiden/styles
 
-> 基础样式库
+> Compass 通用样式库
 
-## Getting Started
+## 快速上手
 
 `npm install @compass-aiden/styles` 安装依赖
 
-### Use bem.scss
+### 使用 bem.scss
 
 vite 配置为例,其他项目类似,全局导入即可
 
@@ -43,22 +49,27 @@ export default defineConfig({
 
 <style scoped lang="scss">
 @include b(container) {
+  // .cp-container
   @include e(button) {
+    // .cp-container__button
     @include m(active) {
+      // .cp-container__button_active
     }
   }
   // 选择多个
   @include e((button, input)) {
+    // .cp-container__button 和 .cp-container__input
   }
 }
 
 // 重新定义domain
 @include b(container, demo) {
+  // .demo-container
 }
 </style>
 ```
 
-### Use styles
+### 使用样式文件
 
 ```stylus
 // 导入所有css文件
@@ -69,18 +80,18 @@ export default defineConfig({
 @import '@compass-aiden/styles/assets/scrollbar.css'; // 单独导入滚动条样式表
 ```
 
-#### CSS variables
+#### CSS 变量
 
-##### CSS variables for dist/assets/base.css
+##### dist/assets/base.css 内的 CSS 变量
 
 - --cp-page-bg-color 页面背景颜色
 
-##### CSS variables for dist/assets/tools.css
+##### dist/assets/tools.css 内的 CSS 变量
 
 - --cp-selection-color 选择区颜色
 - --cp-selection-bg-color 选择区背景色
 
-##### CSS variables for dist/assets/scrollbar.css
+##### dist/assets/scrollbar.css 内的 CSS 变量
 
 - --cp-scrollbar-bg-color 滚动条背景色
 - --cp-scrollbar-thumb-bg-color 滚动条滑块背景色

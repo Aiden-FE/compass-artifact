@@ -25,6 +25,12 @@ export const zhNavbar = navbar([
         children: [],
       },
       {
+        text: 'Compass 样式库',
+        icon: 'page',
+        link: '/styles/',
+        children: [],
+      },
+      {
         text: '贡献文档',
         icon: 'code',
         link: '/contribution/',

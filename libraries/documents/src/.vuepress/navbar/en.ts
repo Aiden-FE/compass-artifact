@@ -25,6 +25,12 @@ export const enNavbar = navbar([
         children: [],
       },
       {
+        text: 'Compass Style Library',
+        icon: 'page',
+        link: '/en/styles/',
+        children: [],
+      },
+      {
         text: 'Contribution Document',
         icon: 'code',
         link: '/en/contribution/',

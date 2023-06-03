@@ -4,7 +4,7 @@ icon: home
 title: Home
 heroImage: /logo.png
 heroText: Compass Artifact
-tagline: Compass front-end integrated material platform
+tagline: Compass infrastructure platform
 
 features:
   - title: Compass commander
@@ -19,6 +19,10 @@ features:
     icon: selection
     details: Technical selection suggestions suitable for various scenarios
     link: /en/awesome/
+  - title: Compass Style Library
+    icon: page
+    details: Compass common style library
+    link: /en/styles/
   - title: Contribution Document
     icon: code
     details: R & D Staff Contribution Guidance Document

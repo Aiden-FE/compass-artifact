@@ -4,7 +4,7 @@ icon: home
 title: 首页
 heroImage: /logo.png
 heroText: Compass Artifact
-tagline: Compass 前端综合物料平台
+tagline: Compass 基础设施平台
 
 features:
   - title: Compass 脚手架
@@ -19,6 +19,10 @@ features:
     icon: selection
     details: 适用于各类场景的技术选型建议
     link: /awesome/
+  - title: Compass 样式库
+    icon: page
+    details: Compass 通用样式库
+    link: /styles/
   - title: 贡献文档
     icon: code
     details: 研发人员贡献引导文档
