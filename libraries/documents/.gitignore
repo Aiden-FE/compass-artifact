@@ -6,5 +6,6 @@ src/.vuepress/dist/
 
 # 自动生成的外部引用文件
 eslint-config/
+commander/
 **/temp/
 src/.vuepress/temp/

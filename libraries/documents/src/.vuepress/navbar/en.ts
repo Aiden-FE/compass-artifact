@@ -7,6 +7,12 @@ export const enNavbar = navbar([
     icon: 'stack',
     children: [
       {
+        text: 'Compass commander',
+        icon: 'shell',
+        link: '/en/commander/',
+        children: [],
+      },
+      {
         text: 'Eslint Config',
         icon: 'linter',
         link: '/en/eslint-config/',
@@ -16,6 +22,12 @@ export const enNavbar = navbar([
         text: 'Selection Recommendation',
         icon: 'selection',
         link: '/en/awesome/',
+        children: [],
+      },
+      {
+        text: 'Contribution Document',
+        icon: 'code',
+        link: '/en/contribution/',
         children: [],
       },
     ],

@@ -1,19 +1,46 @@
+---
+title: Compass 脚手架
+description: Compass 多功能脚手架
+permalink: /commander/
+---
+
 # @compass-aiden/commander
 
-> cmopass 脚手架项目
+> Compass 多功能脚手架
 
 ## 快速上手
 
-`npm install -g @compass-aiden/commander` 全局安装依赖
+安装脚手架项目:
 
-`compass -v` 查看 compass 脚手架版本
+::: tabs#npmManager
 
-`compass -h` 查看脚手架帮助
+@tab:active pnpm
 
-`compass update` 脚手架自更新检查
+```shell
+pnpm add @compass-aiden/commander --global
+```
 
-`compass create [options] <project_name>` 创建一个新项目
+@tab npm
 
-`compass pull [options] <author> <repository_name>` 拉取目标仓库
+```shell
+npm add -g @compass-aiden/commander
+```
 
-更新信息请查看帮助信息,查看指定命令帮助信息可通过`compass create --help`类似查看
+@tab yarn
+
+```shell
+yarn add -g @compass-aiden/commander
+```
+
+:::
+
+命令说明:
+
+```shell
+compass -v # 查看脚手架当前版本
+compass update # 更新脚手架
+compass create [options] <project_name> # 创建新项目
+compass pull [options] <author> <repository_name> # 拉取目标仓库
+compass help <commander_name> # 查看特定命令的帮助信息
+compass -h # 更多帮助文档通过此命令查阅
+```

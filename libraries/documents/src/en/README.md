@@ -3,10 +3,14 @@ home: true
 icon: home
 title: Home
 heroImage: /logo.png
-heroText: Compass artifact
+heroText: Compass Artifact
 tagline: Compass front-end integrated material platform
 
 features:
+  - title: Compass commander
+    icon: shell
+    details: Compass multifunction commander
+    link: /en/commander/
   - title: eslint config
     icon: linter
     details: Recommended preset eslint configuration for multiple development environments
@@ -15,7 +19,10 @@ features:
     icon: selection
     details: Technical selection suggestions suitable for various scenarios
     link: /en/awesome/
-
+  - title: Contribution Document
+    icon: code
+    details: R & D Staff Contribution Guidance Document
+    link: /en/contribution/
 copyright: false
 footer: MIT Licensed | Copyright © 2023-present <a href="https://github.com/Aiden-FE" target="_blank">Aiden</a>
 ---
