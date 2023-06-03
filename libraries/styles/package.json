@@ -1,0 +1,57 @@
+{
+  "name": "@compass-aiden/styles",
+  "version": "1.1.0",
+  "description": "基础样式库",
+  "main": "dist/assets/main.css",
+  "type": "module",
+  "scripts": {
+    "prepublish": "npm run build",
+    "dev": "rollup -w -c rollup.config.js",
+    "build": "npm run clean && rollup -c rollup.config.js",
+    "lint": "echo \"Warning: no lint specified\"",
+    "test": "echo \"Warning: no test specified\"",
+    "clean": "rimraf dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aiden-FE/compass-template.git"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Aiden-FE/compass-template/issues"
+  },
+  "homepage": "https://github.com/Aiden-FE/compass-template#readme",
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version",
+      "last 1 ie version"
+    ]
+  },
+  "devDependencies": {
+    "@ironkinoko/rollup-plugin-styles": "^4.0.3",
+    "@rollup/plugin-json": "^6.0.0",
+    "autoprefixer": "^10.4.13",
+    "postcss": "^8.4.21",
+    "rimraf": "^4.1.2",
+    "rollup": "^3.15.0",
+    "rollup-plugin-copy": "^3.4.0",
+    "rollup-plugin-serve": "^2.0.2",
+    "rollup-plugin-summary": "^2.0.0",
+    "sass": "^1.58.3"
+  },
+  "dependencies": {
+    "modern-normalize": "^1.1.0"
+  }
+}

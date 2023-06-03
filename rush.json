@@ -336,7 +336,22 @@
     {
       "packageName": "@compass-aiden/eslint-config",
       "projectFolder": "libraries/eslint-config",
-      "versionPolicyName": "eslint"
+      "versionPolicyName": "individual"
+    },
+    {
+      "packageName": "@compass-aiden/utils",
+      "projectFolder": "libraries/utils",
+      "versionPolicyName": "individual"
+    },
+    {
+      "packageName": "@compass-aiden/styles",
+      "projectFolder": "libraries/styles",
+      "versionPolicyName": "individual"
+    },
+    {
+      "packageName": "@compass-aiden/commander",
+      "projectFolder": "libraries/commander",
+      "versionPolicyName": "individual"
     },
     {
       "packageName": "@compass-aiden/documents",
