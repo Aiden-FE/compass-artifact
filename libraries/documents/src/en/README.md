@@ -11,6 +11,10 @@ features:
     icon: shell
     details: Compass multifunction commander
     link: /en/commander/
+  - title: Compass utils library
+    icon: module
+    details: Compass universal utils library
+    link: /en/utils/
   - title: eslint config
     icon: linter
     details: Recommended preset eslint configuration for multiple development environments

@@ -13,6 +13,12 @@ export const zhNavbar = navbar([
         children: [],
       },
       {
+        text: 'Compass 工具函数库',
+        icon: 'module',
+        link: '/utils/',
+        children: [],
+      },
+      {
         text: 'Eslint Config',
         icon: 'linter',
         link: '/eslint-config/',

@@ -13,6 +13,12 @@ export const enNavbar = navbar([
         children: [],
       },
       {
+        text: 'Compass utils library',
+        icon: 'module',
+        link: '/en/utils/',
+        children: [],
+      },
+      {
         text: 'Eslint Config',
         icon: 'linter',
         link: '/en/eslint-config/',

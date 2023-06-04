@@ -7,7 +7,7 @@ function convertToCSSData(data: Record<string, string | number>): string {
 }
 
 /**
- * @description 基于 CSS variables 的主题管理器
+ * @description 基于 CSS variables 与 DOM 的主题管理器
  * @example
  * const theme = new ThemeManager({
  *   baseVariables: { '--scope-font-color': '#212121' } // 声明基础的公共变量,被所有注册主题继承

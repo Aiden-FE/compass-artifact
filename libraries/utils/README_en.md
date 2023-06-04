@@ -1,33 +1,33 @@
 ---
-title: Compass 工具函数库
-description: Compass 通用工具函数库
-permalink: /utils/
+title: Compass utils library
+description: Compass universal utils library
+permalink: /en/utils/
 headerDepth: 4
 ---
 
 # @compass-aiden/utils
 
-> 工具函数库
+> Compass universal utils library
 
-## 快速上手
+## Getting started
 
-`npm install @compass-aiden/utils` 安装依赖
+`npm install @compass-aiden/utils` Install dependencies
 
-ESModule 环境使用:
+ESModule environment use:
 
 ```typescript
 import { VERSION } from '@compass-aiden/utils';
 console.log('Current utils version is %s', VERSION);
 ```
 
-Commonjs 环境使用:
+Commonjs environment use:
 
 ```typescript
 const { VERSION } = require('@compass-aiden/utils');
 console.log('Current utils version is %s', VERSION);
 ```
 
-UMD 环境使用:
+UMD environment use:
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@compass-aiden/utils/dist/main.umd.min.js"></script>
@@ -37,50 +37,50 @@ UMD 环境使用:
 </script>
 ```
 
-## 可用实用程序列表
+## List of available utils
 
 ### String
 
 #### encodePhoneNumber
 
-**版本**:
+**Version**:
 
 1.6.3
 
-**描述**:
+**Description**:
 
-加密手机号码,脱敏处理
+Encrypted mobile phone number, desensitization processing
 
-**类型**:
+**Type**:
 
 ```typescript
 type encodePhoneNumber = (
-  /** 手机号码或国际号码 */
+  /** Mobile phone number or international number */
   phone: string,
-  /** 配置 */
+  /** Configuration */
   option?: {
     /**
-     * @description 加密字符的长度
+     * @description length of encrypted characters
      * @default 4
      */
     encodeLength?: number;
     /**
-     * @description 向右偏移长度,影响加密块离左边的距离
+     * @description The length of the offset to the right affects the distance of the encrypted block from the left.
      * @default 3
      */
     offsetLength?: number;
     /**
-     * @description 是否为国际号码
+     * @description Whether it is an international number
      * @default false
      */
     isCountry?: boolean;
     /**
-     * @description 国际区号后的分割符, 如 +86 176的分割符为' '
+     * @description The separator after the international code, such as the separator of '86 176' is ' '
      * @default ' '
      */
     countryAfterSymbol?: string;
     /**
-     * @description 掩码的替换字符
+     * @description Replacement characters for the mask
      * @default *
      */
     maskChar?: string;
@@ -88,7 +88,7 @@ type encodePhoneNumber = (
 ) => string;
 ```
 
-**示例**:
+**Example**:
 
 ```typescript
 encodePhoneNumber('13533334444'); // => 135****4444
@@ -97,26 +97,26 @@ encodePhoneNumber('+86 13533334444', { isCountry: true }); // => +86 135****4444
 
 #### replaceVariablesInString
 
-**版本**:
+**Version**:
 
 1.6.3
 
-**描述**:
+**Description**:
 
-替换字符串中包裹起来的变量
+Replace variables wrapped in a string
 
-**类型**:
+**Type**:
 
 ```typescript
 type replaceVariablesInString = (
-  /** 字符串模板 */
+  /** String template */
   templateString: string,
-  /** 参数对象 */
+  /** Parameter object */
   params: Record<string, string>,
 ) => string;
 ```
 
-**示例**:
+**Example**:
 
 ```typescript
 const str = 'This is test {{ test }} string.';
@@ -127,34 +127,34 @@ replaceVariablesInString(str, { test: 'hello' }); // => 'This is test hello stri
 
 #### promiseTask
 
-**版本**:
+**Version**:
 
 1.6.3
 
-**描述**:
+**Description**:
 
-异步事务处理, 捕获异常不阻塞程序
+Asynchronous transaction processing, catching exceptions does not block the program.
 
-**类型**:
+**Type**:
 
 ```typescript
 type promiseTask = <Result = unknown, ExtraProperty extends object = object>(
   /**
-   * @description 异步任务
+   * @description asynchronous task
    */
   promise: Promise<Result>,
   /**
-   * @description 将数据属性额外附加在错误信息的属性内
+   * @description Append the data attribute extra inside the attribute of the error message
    */
   errorExt?: ExtraProperty,
 ) => Promise<[(Error & ExtraProperty) | Error | null, Result | null]>;
 ```
 
-返回:
+Return:
 
-成功时返回`[null, Result]`,失败则返回`[(Error & ExtraProperty) | Error, null]`
+Return on Success`[null, Result]`,Return on failure`[(Error & ExtraProperty) | Error, null]`
 
-**示例**:
+**Example**:
 
 ```typescript
 const asyncTask = Promise.all([]);
@@ -183,58 +183,58 @@ invoke();
 
 #### ThemeManager
 
-**版本**:
+**Version**:
 
 1.6.2
 
-**描述**:
+**Description**:
 
-基于 CSS variables 与 DOM 的主题管理器
+Theme Manager Based on CSS variables and DOM
 
-**类型**:
+**Type**:
 
 ```typescript
 type ThemeVariables = Record<string, string | number>;
 type TMToggleCallback = (themeName: string | undefined, themeData: ThemeVariables | null) => void;
 interface TMConstructor {
   /**
-   * @description 主题变量挂载的根节点
+   * @description Root node of topic variable mount
    * @default 'html'
    * @example
    *   '#id', '.class', document.querySelector('.anyElement')
    */
   root?: string | Element | null;
-  /** 会被各主题继承的公共主题变量 */
+  /** Common theme variables that will be inherited by each theme */
   baseVariables?: ThemeVariables;
   hooks?: {
-    /** 切换主题后触发, 当置为空,不应用任何主题时传入的是 (undefined, null) => void */
+    /** Triggered after switching themes. When it is set to empty and no theme is applied, it is passed in (undefined, null) => void */
     afterToggle?: TMToggleCallback;
   };
 }
 declare class ThemeManager {
   constructor(opt: TMConstructor);
-  /** 注册主题 */
+  /** Register theme */
   register(themeName: string, themeData: ThemeVariables): this;
-  /** 取消注册主题 */
+  /** Unregister theme */
   unregister(themeName: string): this;
-  /** 切换主题 */
+  /** Toggle theme */
   toggle(themeName?: string): this;
-  /** 获取当前主题 */
+  /** Get current theme */
   getCurrentTheme(): string | null;
-  /** 获取主题数据 */
+  /** Get theme Data */
   getThemeData(themeName?: string): ThemeVariables | null;
-  /** 注销主题数据 */
+  /** Unregister theme Data */
   destroy(): void;
 }
 ```
 
-**示例**:
+**Example**:
 
 ```typescript
 const theme = new ThemeManager({
-  baseVariables: { '--scope-font-color': '#212121' }, // 声明基础的公共变量,被所有注册主题继承
+  baseVariables: { '--scope-font-color': '#212121' }, // public variable of the declaration base, inherited by all registered subjects
 });
-// 主题注册
+// Theme Registration
 theme
   .register('light', {
     '--scope-page-background-color': '#FFFFFF',
@@ -243,44 +243,44 @@ theme
     '--scope-page-background-color': 'black',
     '--scope-font-color': '#FFFFFF',
   });
-theme.toggle('light'); // 切换light主题
-theme.toggle(); // 切换为空,不应用任何主题
-theme.getCurrentTheme(); // 获取当前使用的主题标识, 例如: 'light'
-theme.getThemeData(); // 返回当前使用主题的数据
-theme.getThemeData('dark'); // 获取指定主题变量,不提供参数,则默认返回当前使用主题的数据
-theme.unregister('purple'); // 移除已注册的主题
-theme.destroy(); // 移除主题管理器,释放内部引用资源
+theme.toggle('light'); // Switch light theme
+theme.toggle(); // Toggle to null, no theme applied
+theme.getCurrentTheme(); // Gets the currently used theme ID, for example: 'light'
+theme.getThemeData(); // Returns data for the currently used theme
+theme.getThemeData('dark'); // Gets the specified theme variable, and returns the data of the currently used theme by default if
+theme.unregister('purple'); // Remove a registered topic
+theme.destroy(); // Remove the theme manager and release the internal reference resources
 ```
 
 ### Util
 
 #### compareVersion
 
-**版本**:
+**Version**:
 
 1.6.3
 
-**描述**:
+**Description**:
 
-比较两个版本的大小
+Compare the size of two versions
 
-**类型**:
+**Type**:
 
 `(currentVersion: string, comparedVersion: string, trimSymbolPattern?: RegExp): 1 | -1 | 0`
 
-- currentVersion 当前版本
-- comparedVersion 比较的版本
-- trimSymbolPattern 可选, 为正则表达式,符合条件的字符在移除后进行比较,默认匹配 v 字符
+- currentVersion Current version
+- comparedVersion Versions compared
+- trimSymbolPattern Optional. It is a regular expression. Qualifying characters are compared after they are removed. By default, the v character is matched.
 
-返回值:
+Return:
 
-1 大于比较版本;
+1 Greater than compare version;
 
--1 小于比较版本;
+-1 Less Than compare version;
 
-0 等于比较版本.
+0 Equal to compare version.
 
-**示例**:
+**Example**:
 
 ```typescript
 import { compareVersion } from '@compass-aiden/utils';
@@ -292,23 +292,23 @@ compareVersion('v1.0.0', 'V1.0.0'); // => 0
 
 #### downloadFile
 
-**版本**:
+**Version**:
 
 1.6.3
 
-**描述**:
+**Description**:
 
-文件下载方法
+File download method
 
-**类型**:
+**Type**:
 
 `(data: BlobPart, filename: string, blobOption: BlobPropertyBag): void`
 
-- data 可被 Blob 处理的数据
-- filename 指定的文件名
-- blobOption blob 处理 data 时的配置选项
+- data, Data that can be processed by a blob
+- filename, The specified file name
+- blobOption, Configuration options when blob processes data
 
-**示例**:
+**Example**:
 
 ```typescript
 downloadFile(excelData, 'example.xlsx');
@@ -318,19 +318,19 @@ downloadFile(excelData, 'example.xlsx');
 
 #### VERSION
 
-**版本**:
+**Version**:
 
 1.6.3
 
-**描述**:
+**Description**:
 
-当前使用的 @compass-aiden/utils 版本
+Version of @compass-aiden/utils currently in use.
 
-**类型**:
+**Type**:
 
 `string`
 
-**示例**:
+**Example**:
 
 ```typescript
 import { VERSION } from '@compass-aiden/utils';

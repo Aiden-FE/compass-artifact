@@ -1,6 +1,5 @@
 import { hopeTheme } from 'vuepress-theme-hope';
 import { enNavbar, zhNavbar } from './navbar';
-import { enSidebar, zhSidebar } from './sidebar';
 
 export default hopeTheme({
   hostname: 'https://aiden-fe.github.io',
@@ -26,7 +25,7 @@ export default hopeTheme({
       navbar: enNavbar,
 
       // sidebar
-      sidebar: enSidebar,
+      sidebar: false,
 
       displayFooter: true,
 
@@ -43,7 +42,7 @@ export default hopeTheme({
       navbar: zhNavbar,
 
       // sidebar
-      sidebar: zhSidebar,
+      sidebar: false,
 
       displayFooter: true,
 
