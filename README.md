@@ -6,6 +6,15 @@
 
 ---
 
+<div style='text-align: center;'>
+  <img src="https://img.shields.io/badge/CommandLine-333D4D" />
+  <img src="https://img.shields.io/badge/EslintConfig-4B32C3" />
+  <img src="https://img.shields.io/badge/PresetStyles-CC6699" />
+  <img src="https://img.shields.io/badge/Utils-3492FF" />
+</div>
+
+---
+
 [项目文档](https://aiden-fe.github.io/compass-artifact/)
 
 本 Monorepo 含以下子项目:
