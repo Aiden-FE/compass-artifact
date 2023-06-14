@@ -41,6 +41,7 @@ function convertToCSSData(data: Record<string, string | number>): string {
  */
 export default class ThemeManager {
   public systemTheme: 'light' | 'dark';
+
   private styleSheet: CSSStyleSheet;
 
   private styleElement: HTMLStyleElement;
