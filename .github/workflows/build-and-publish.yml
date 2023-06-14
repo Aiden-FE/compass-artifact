@@ -75,7 +75,9 @@ jobs:
       - name: Install rush cli
         env:
           HUSKY: 0
-        run: node common/scripts/install-run-rush.js install
+        run: |
+          pnpm install
+          node common/scripts/install-run-rush.js install
 
       # 构建整个仓库项目
       - name: Run rush Build
