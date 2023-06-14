@@ -73,6 +73,8 @@ jobs:
 
       # rush 安装
       - name: Install rush cli
+        env:
+          HUSKY: 0
         run: node common/scripts/install-run-rush.js install
 
       # 构建整个仓库项目
@@ -94,6 +96,8 @@ jobs:
 
       # 应用变更
       - name: Apply change
+        env:
+          HUSKY: 0
         run: node common/scripts/install-run-rush.js version --bump --target-branch master
 
       # 发布变更包
