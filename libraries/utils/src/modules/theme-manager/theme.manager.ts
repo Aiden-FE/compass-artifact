@@ -11,7 +11,17 @@ function convertToCSSData(data: Record<string, string | number>): string {
  * @example
  * const theme = new ThemeManager({
  *   baseVariables: { '--scope-font-color': '#212121' }, // 声明基础的公共变量,被所有注册主题继承
- *   hooks: {}, // 各类hooks监听
+ *   hooks: {
+ *     // 使用hook动态设置主题
+ *     afterSystemThemeChange: (systemTheme) => {
+ *       const currentTheme = theme.getCurrentTheme();
+ *       if (!currentTheme || currentTheme === 'default') {
+ *         theme.unregister('default')
+ *         theme.register('default', ThemeConfig[theme])
+ *         theme.toggle('default')
+ *       }
+ *     }
+ *   }, // 各类hooks监听
  * });
  * console.log(theme.systemTheme); // 当前的系统主题
  * // 主题注册

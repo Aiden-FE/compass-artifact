@@ -209,9 +209,13 @@ interface TMConstructor {
   hooks?: {
     /** 切换主题后触发, 当置为空,不应用任何主题时传入的是 (undefined, null) => void */
     afterToggle?: TMToggleCallback;
+    /** 系统主题变更后触发 */
+    afterSystemThemeChange?: (systemTheme: 'light' | 'dark') => void;
   };
 }
 declare class ThemeManager {
+  /** 当前系统主题 */
+  systemTheme: 'light' | 'dark';
   constructor(opt: TMConstructor);
   /** 注册主题 */
   register(themeName: string, themeData: ThemeVariables): this;
@@ -233,7 +237,20 @@ declare class ThemeManager {
 ```typescript
 const theme = new ThemeManager({
   baseVariables: { '--scope-font-color': '#212121' }, // 声明基础的公共变量,被所有注册主题继承
+  hooks: {
+    // afterToggle: (themeName, themeData) => {},
+    // 在未设置主题或默认主题时跟随系统主题
+    afterSystemThemeChange: (systemTheme) => {
+      const currentTheme = theme.getCurrentTheme();
+      if (!currentTheme || currentTheme === 'default') {
+        theme.unregister('default');
+        theme.register('default', ThemeConfig[theme]);
+        theme.toggle('default');
+      }
+    },
+  },
 });
+console.log(theme.systemTheme); // 当前的系统主题
 // 主题注册
 theme
   .register('light', {
