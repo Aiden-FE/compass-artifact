@@ -16,6 +16,8 @@ export interface TMConstructor {
   hooks?: {
     /** 切换主题后触发, 当置为空,不应用任何主题时传入的是 (undefined, null) => void */
     afterToggle?: TMToggleCallback;
+    /** 系统主题变更后触发 */
+    afterSystemThemeChange?: (systemTheme: 'light' | 'dark') => void;
   };
 }
 

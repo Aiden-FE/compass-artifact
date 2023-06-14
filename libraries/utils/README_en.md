@@ -209,9 +209,13 @@ interface TMConstructor {
   hooks?: {
     /** Triggered after switching themes. When it is set to empty and no theme is applied, it is passed in (undefined, null) => void */
     afterToggle?: TMToggleCallback;
+    /** Triggered after system theme changes */
+    afterSystemThemeChange?: (systemTheme: 'light' | 'dark') => void;
   };
 }
 declare class ThemeManager {
+  /** Current System theme */
+  systemTheme: 'light' | 'dark';
   constructor(opt: TMConstructor);
   /** Register theme */
   register(themeName: string, themeData: ThemeVariables): this;
@@ -233,7 +237,20 @@ declare class ThemeManager {
 ```typescript
 const theme = new ThemeManager({
   baseVariables: { '--scope-font-color': '#212121' }, // public variable of the declaration base, inherited by all registered subjects
+  hooks: {
+    // afterToggle: (themeName, themeData) => {},
+    // Follow system theme when no theme or default theme is set
+    afterSystemThemeChange: (systemTheme) => {
+      const currentTheme = theme.getCurrentTheme();
+      if (!currentTheme || currentTheme === 'default') {
+        theme.unregister('default');
+        theme.register('default', ThemeConfig[theme]);
+        theme.toggle('default');
+      }
+    },
+  },
 });
+console.log(theme.systemTheme); // Current System theme
 // Theme Registration
 theme
   .register('light', {
