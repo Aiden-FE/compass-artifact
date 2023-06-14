@@ -10,8 +10,10 @@ function convertToCSSData(data: Record<string, string | number>): string {
  * @description 基于 CSS variables 与 DOM 的主题管理器
  * @example
  * const theme = new ThemeManager({
- *   baseVariables: { '--scope-font-color': '#212121' } // 声明基础的公共变量,被所有注册主题继承
+ *   baseVariables: { '--scope-font-color': '#212121' }, // 声明基础的公共变量,被所有注册主题继承
+ *   hooks: {}, // 各类hooks监听
  * });
+ * console.log(theme.systemTheme); // 当前的系统主题
  * // 主题注册
  * theme.register('light', {
  *   '--scope-page-background-color': '#FFFFFF',
@@ -28,6 +30,7 @@ function convertToCSSData(data: Record<string, string | number>): string {
  * theme.destroy(); // 移除主题管理器,释放内部引用资源
  */
 export default class ThemeManager {
+  public systemTheme: 'light' | 'dark';
   private styleSheet: CSSStyleSheet;
 
   private styleElement: HTMLStyleElement;
@@ -53,6 +56,14 @@ export default class ThemeManager {
     this.styleElement = styleElement;
     this.container.insertBefore(styleElement, this.container.firstChild);
     this.styleSheet = styleElement.sheet as CSSStyleSheet;
+    const themeMedia = window.matchMedia('(prefers-color-scheme: light)');
+    this.systemTheme = themeMedia.matches ? 'light' : 'dark';
+    themeMedia.addEventListener('change', (e) => {
+      this.systemTheme = e.matches ? 'light' : 'dark';
+      if (opt.hooks?.afterSystemThemeChange) {
+        opt.hooks.afterSystemThemeChange(this.systemTheme);
+      }
+    });
   }
 
   public register(themeName: string, themeData: ThemeVariables) {
