@@ -12,7 +12,6 @@
     "start": "npm run dev",
     "dev": "rollup -w -c rollup.config.js",
     "build": "npm run clean && rollup -c rollup.config.js",
-    "prepublish": "npm run lint && npm run build",
     "lint": "eslint src --ext .ts,.js --fix",
     "clean": "rimraf dist && rimraf types"
   },
