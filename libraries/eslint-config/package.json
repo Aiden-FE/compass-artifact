@@ -1,6 +1,6 @@
 {
   "name": "@compass-aiden/eslint-config",
-  "version": "1.5.3",
+  "version": "1.5.4",
   "description": "Recommend eslint config",
   "main": "recommended-base.js",
   "exports": {
