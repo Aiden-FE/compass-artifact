@@ -1,6 +1,14 @@
 # Change Log - @compass-aiden/utils
 
-This log was last generated on Wed, 14 Jun 2023 15:26:39 GMT and should not be manually modified.
+This log was last generated on Fri, 16 Jun 2023 02:29:27 GMT and should not be manually modified.
+
+## 1.6.4
+
+Fri, 16 Jun 2023 02:29:27 GMT
+
+### Patches
+
+- feat: theme 自动跟随系统主题
 
 ## 1.6.3
 

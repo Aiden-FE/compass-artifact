@@ -1,0 +1,17 @@
+{
+  "name": "@compass-aiden/eslint-config",
+  "entries": [
+    {
+      "version": "1.2.2",
+      "tag": "@compass-aiden/eslint-config_v1.2.2",
+      "date": "Fri, 16 Jun 2023 02:29:27 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "fix: 改进React lint"
+          }
+        ]
+      }
+    }
+  ]
+}

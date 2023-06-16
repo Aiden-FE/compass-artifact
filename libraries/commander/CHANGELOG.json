@@ -1,0 +1,17 @@
+{
+  "name": "@compass-aiden/commander",
+  "entries": [
+    {
+      "version": "1.2.1",
+      "tag": "@compass-aiden/commander_v1.2.1",
+      "date": "Fri, 16 Jun 2023 02:29:27 GMT",
+      "comments": {
+        "dependency": [
+          {
+            "comment": "Updating dependency \"@compass-aiden/eslint-config\" to `1.2.2`"
+          }
+        ]
+      }
+    }
+  ]
+}
