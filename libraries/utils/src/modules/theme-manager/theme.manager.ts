@@ -93,6 +93,9 @@ export default class ThemeManager {
   }
 
   public register(themeName: string, themeData: ThemeVariables) {
+    if (this.themeMap.has(themeName)) {
+      this.unregister(themeName);
+    }
     const data = {
       ...this.opt.baseVariables,
       ...themeData,
