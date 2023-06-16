@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@compass-aiden/eslint-config",
+      "comment": "fix: 改进React lint",
+      "type": "patch"
+    }
+  ],
+  "packageName": "@compass-aiden/eslint-config"
+}

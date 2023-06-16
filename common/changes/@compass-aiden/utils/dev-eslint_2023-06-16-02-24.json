@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@compass-aiden/utils",
+      "comment": "feat: theme自动跟随系统主题",
+      "type": "patch"
+    }
+  ],
+  "packageName": "@compass-aiden/utils"
+}
