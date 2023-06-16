@@ -199,19 +199,19 @@ module.exports = {
 @tab pnpm
 
 ```shell
-pnpm add -D eslint-config-airbnb eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-react-hooks eslint-config-airbnb-typescript @typescript-eslint/eslint-plugin @typescript-eslint/parser
+pnpm add -D eslint-config-airbnb eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-react-hooks eslint-config-airbnb-typescript @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-plugin-react-refresh
 ```
 
 @tab npm
 
 ```shell
-npm add -D eslint-config-airbnb eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-react-hooks eslint-config-airbnb-typescript @typescript-eslint/eslint-plugin @typescript-eslint/parser
+npm add -D eslint-config-airbnb eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-react-hooks eslint-config-airbnb-typescript @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-plugin-react-refresh
 ```
 
 @tab yarn
 
 ```shell
-yarn add -D eslint-config-airbnb eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-react-hooks eslint-config-airbnb-typescript @typescript-eslint/eslint-plugin @typescript-eslint/parser
+yarn add -D eslint-config-airbnb eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-react-hooks eslint-config-airbnb-typescript @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-plugin-react-refresh
 ```
 
 :::
@@ -222,7 +222,7 @@ yarn add -D eslint-config-airbnb eslint-plugin-jsx-a11y eslint-plugin-react esli
 module.exports = {
   // 当include lint异常时可指向正确的ts配置文件
   parserOptions: {
-    project: './tsconfig.json',
+    project: ['./tsconfig.json'],
   },
   extends: [
     // react使用此配置
@@ -231,7 +231,7 @@ module.exports = {
 };
 ```
 
-`eslint . --fix --ext .js,.jsx,.ts,.tsx`
+使用 `eslint . --fix --ext .js,.jsx,.ts,.tsx`
 
 ### Angular 环境使用
 
@@ -384,14 +384,29 @@ yarn add -D prettier eslint-config-prettier eslint-plugin-prettier
 
 ```javascript
 module.exports = {
-  plugins: ['prettier'], // 增加此项
   extends: [
     'plugin:prettier/recommended', // 增加此项
   ],
-  rules: {
-    'prettier/prettier': 'error', // 增加此项
-  },
 };
+```
+
+添加.prettierrc.json 文件,按需配置
+
+```json
+{
+  "printWidth": 120,
+  "tabWidth": 2,
+  "useTabs": false,
+  "semi": true,
+  "singleQuote": true,
+  "quoteProps": "as-needed",
+  "jsxSingleQuote": false,
+  "trailingComma": "all",
+  "bracketSpacing": true,
+  "bracketSameLine": false,
+  "arrowParens": "always",
+  "endOfLine": "lf"
+}
 ```
 
 ## 常见问题

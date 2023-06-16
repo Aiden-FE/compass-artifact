@@ -212,6 +212,11 @@ interface TMConstructor {
     /** Triggered after system theme changes */
     afterSystemThemeChange?: (systemTheme: 'light' | 'dark') => void;
   };
+  /**
+   * @description Whether to disable automatic follow of system theme if no theme is set or theme is default
+   * @todo When the system theme is automatically followed, the theme data named light or dark is automatically applied. If it does not exist, the theme is not applied.
+   */
+  disableFollowSystemTheme?: boolean;
 }
 declare class ThemeManager {
   /** Current System theme */
@@ -237,20 +242,7 @@ declare class ThemeManager {
 ```typescript
 const theme = new ThemeManager({
   baseVariables: { '--scope-font-color': '#212121' }, // public variable of the declaration base, inherited by all registered subjects
-  hooks: {
-    // afterToggle: (themeName, themeData) => {},
-    // Follow system theme when no theme or default theme is set
-    afterSystemThemeChange: (systemTheme) => {
-      const currentTheme = theme.getCurrentTheme();
-      if (!currentTheme || currentTheme === 'default') {
-        theme.unregister('default');
-        theme.register('default', ThemeConfig[theme]);
-        theme.toggle('default');
-      }
-    },
-  },
 });
-console.log(theme.systemTheme); // Current System theme
 // Theme Registration
 theme
   .register('light', {
@@ -261,7 +253,7 @@ theme
     '--scope-font-color': '#FFFFFF',
   });
 theme.toggle('light'); // Switch light theme
-theme.toggle(); // Toggle to null, no theme applied
+theme.toggle(); // Toggle to null, no theme applied, or specify 'default' and automatically follow theme when the disable Follow System Theme is not used
 theme.getCurrentTheme(); // Gets the currently used theme ID, for example: 'light'
 theme.getThemeData(); // Returns data for the currently used theme
 theme.getThemeData('dark'); // Gets the specified theme variable, and returns the data of the currently used theme by default if

@@ -71,10 +71,25 @@ export default class ThemeManager {
     this.systemTheme = themeMedia.matches ? 'light' : 'dark';
     themeMedia.addEventListener('change', (e) => {
       this.systemTheme = e.matches ? 'light' : 'dark';
+      this.applyDefaultTheme();
       if (opt.hooks?.afterSystemThemeChange) {
         opt.hooks.afterSystemThemeChange(this.systemTheme);
       }
     });
+  }
+
+  private applyDefaultTheme() {
+    if (this.opt.disableFollowSystemTheme) return;
+    const currentTheme = this.getCurrentTheme();
+    if (this.systemTheme && (!currentTheme || currentTheme === 'default')) {
+      const data = this.getThemeData(this.systemTheme);
+
+      if (data) {
+        this.unregister('default');
+        this.register('default', data);
+        this.toggle('default');
+      }
+    }
   }
 
   public register(themeName: string, themeData: ThemeVariables) {
@@ -90,6 +105,10 @@ export default class ThemeManager {
       index,
       data,
     });
+    // 确保当前应用的是最新的主题数据
+    if (this.systemTheme === themeName) {
+      this.applyDefaultTheme();
+    }
     return this;
   }
 
