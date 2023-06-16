@@ -1,11 +1,3 @@
-/**
- * @description 适用于基础React环境
- * @example
- * 1. npm install -D eslint-config-airbnb eslint-plugin-jsx-a11y eslint-plugin-react
- * eslint-plugin-react-hooks eslint-config-airbnb-typescript
- * @typescript-eslint/eslint-plugin @typescript-eslint/parser
- * 2. eslint . --ext .js,.jsx,.ts,.tsx
- */
 module.exports = {
   extends: [
     'eslint-config-airbnb',
@@ -13,4 +5,9 @@ module.exports = {
     'eslint-config-airbnb-typescript',
     './recommended-base.js',
   ].map(require.resolve),
+  plugins: ['react-refresh'],
+  rules: {
+    'react-refresh/only-export-components': 'warn',
+    'react/react-in-jsx-scope': 'off',
+  },
 };

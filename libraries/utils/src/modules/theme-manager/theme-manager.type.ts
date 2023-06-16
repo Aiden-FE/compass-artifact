@@ -19,6 +19,11 @@ export interface TMConstructor {
     /** 系统主题变更后触发 */
     afterSystemThemeChange?: (systemTheme: 'light' | 'dark') => void;
   };
+  /**
+   * @description 是否禁用 在未设置主题或主题为 default 情况下自动跟随系统主题
+   * @todo 自动跟随系统主题时,会自动应用名为 light 或 dark 对应的主题数据,不存在则不应用主题
+   */
+  disableFollowSystemTheme?: boolean;
 }
 
 export type TMThemeConfig = {

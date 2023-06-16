@@ -212,6 +212,11 @@ interface TMConstructor {
     /** 系统主题变更后触发 */
     afterSystemThemeChange?: (systemTheme: 'light' | 'dark') => void;
   };
+  /**
+   * @description 是否禁用 在未设置主题或主题为 default 情况下自动跟随系统主题
+   * @todo 自动跟随系统主题时,会自动应用名为 light 或 dark 对应的主题数据,不存在则不应用主题
+   */
+  disableFollowSystemTheme?: boolean;
 }
 declare class ThemeManager {
   /** 当前系统主题 */
@@ -237,20 +242,7 @@ declare class ThemeManager {
 ```typescript
 const theme = new ThemeManager({
   baseVariables: { '--scope-font-color': '#212121' }, // 声明基础的公共变量,被所有注册主题继承
-  hooks: {
-    // afterToggle: (themeName, themeData) => {},
-    // 在未设置主题或默认主题时跟随系统主题
-    afterSystemThemeChange: (systemTheme) => {
-      const currentTheme = theme.getCurrentTheme();
-      if (!currentTheme || currentTheme === 'default') {
-        theme.unregister('default');
-        theme.register('default', ThemeConfig[theme]);
-        theme.toggle('default');
-      }
-    },
-  },
 });
-console.log(theme.systemTheme); // 当前的系统主题
 // 主题注册
 theme
   .register('light', {
@@ -261,7 +253,7 @@ theme
     '--scope-font-color': '#FFFFFF',
   });
 theme.toggle('light'); // 切换light主题
-theme.toggle(); // 切换为空,不应用任何主题
+theme.toggle(); // 切换为空,不应用任何主题,或指定为'default',且未使用disableFollowSystemTheme时自动跟随主题
 theme.getCurrentTheme(); // 获取当前使用的主题标识, 例如: 'light'
 theme.getThemeData(); // 返回当前使用主题的数据
 theme.getThemeData('dark'); // 获取指定主题变量,不提供参数,则默认返回当前使用主题的数据

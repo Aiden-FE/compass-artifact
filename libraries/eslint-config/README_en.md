@@ -199,19 +199,19 @@ Install pre-dependencies
 @tab pnpm
 
 ```shell
-pnpm add -D eslint-config-airbnb eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-react-hooks eslint-config-airbnb-typescript @typescript-eslint/eslint-plugin @typescript-eslint/parser
+pnpm add -D eslint-config-airbnb eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-react-hooks eslint-config-airbnb-typescript @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-plugin-react-refresh
 ```
 
 @tab npm
 
 ```shell
-npm add -D eslint-config-airbnb eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-react-hooks eslint-config-airbnb-typescript @typescript-eslint/eslint-plugin @typescript-eslint/parser
+npm add -D eslint-config-airbnb eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-react-hooks eslint-config-airbnb-typescript @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-plugin-react-refresh
 ```
 
 @tab yarn
 
 ```shell
-yarn add -D eslint-config-airbnb eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-react-hooks eslint-config-airbnb-typescript @typescript-eslint/eslint-plugin @typescript-eslint/parser
+yarn add -D eslint-config-airbnb eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-react-hooks eslint-config-airbnb-typescript @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-plugin-react-refresh
 ```
 
 :::
@@ -221,7 +221,7 @@ Update the '.eslintrc' configuration file:
 ```javascript
 module.exports = {
   parserOptions: {
-    project: './tsconfig.json',
+    project: ['./tsconfig.json'],
   },
   extends: [
     '@compass-aiden/eslint-config/react', // Add this line
@@ -229,7 +229,7 @@ module.exports = {
 };
 ```
 
-`eslint . --fix --ext .js,.jsx,.ts,.tsx`
+Use `eslint . --fix --ext .js,.jsx,.ts,.tsx`
 
 ### Angular environment using
 
@@ -379,12 +379,48 @@ Update the '.eslintrc' configuration file:
 
 ```javascript
 module.exports = {
-  plugins: ['prettier'], // Add this line
   extends: [
     'plugin:prettier/recommended', // Add this line
   ],
-  rules: {
-    'prettier/prettier': 'error', // Add this line
-  },
 };
+```
+
+Add .prettierrc.json file, configure as needed
+
+```json
+{
+  "printWidth": 120,
+  "tabWidth": 2,
+  "useTabs": false,
+  "semi": true,
+  "singleQuote": true,
+  "quoteProps": "as-needed",
+  "jsxSingleQuote": false,
+  "trailingComma": "all",
+  "bracketSpacing": true,
+  "bracketSameLine": false,
+  "arrowParens": "always",
+  "endOfLine": "lf"
+}
+```
+
+## FAQ
+
+### Unknown compiler option 'preserveValueImports'
+
+The problem may occur in the Monorepo project, because the variable promotion of the typescript dependent package conflicts with other packages, you can fix it by prohibiting the typescript package dependency promotion.
+
+### Parsing error: ImportDeclaration should appear when the mode is ES6 and in the module context
+
+Add the following settings to the .eslintrc file
+
+```json
+{
+  "parserOptions": {
+    "ecmaVersion": 2022,
+    "ecmaFeatures": {
+      "modules": true
+    }
+  }
+}
 ```
