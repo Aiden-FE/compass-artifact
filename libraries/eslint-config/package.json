@@ -10,7 +10,8 @@
     "./vue2": "./recommended-vue2.js",
     "./react": "./recommended-react.js",
     "./angular": "./recommended-angular.js",
-    "./nest": "./recommended-nest.js"
+    "./nest": "./recommended-nest.js",
+    "./next": "./recommended-next.js"
   },
   "author": "Aiden_FE@outlook.com",
   "license": "MIT",

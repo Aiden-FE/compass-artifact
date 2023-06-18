@@ -49,6 +49,45 @@ yarn add -D @compass-aiden/eslint-config eslint eslint-plugin-import
 
 :::
 
+### Nextjs 环境使用
+
+安装前置依赖
+
+::: tabs#npmManager
+
+@tab pnpm
+
+```shell
+pnpm add -D eslint-config-next eslint-config-airbnb eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-react-hooks eslint-config-airbnb-typescript @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-plugin-react-refresh
+```
+
+@tab npm
+
+```shell
+npm add -D eslint-config-next eslint-config-airbnb eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-react-hooks eslint-config-airbnb-typescript @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-plugin-react-refresh
+```
+
+@tab yarn
+
+```shell
+yarn add -D eslint-config-next eslint-config-airbnb eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-react-hooks eslint-config-airbnb-typescript @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-plugin-react-refresh
+```
+
+:::
+
+更新.eslintrc 配置文件:
+
+```javascript
+module.exports = {
+  extends: [
+    // next使用此配置
+    '@compass-aiden/eslint-config/next',
+  ],
+};
+```
+
+使用 `next lint`
+
 ### Nestjs 环境使用
 
 安装前置依赖
