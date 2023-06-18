@@ -1,6 +1,14 @@
 # Change Log - @compass-aiden/eslint-config
 
-This log was last generated on Fri, 16 Jun 2023 07:41:15 GMT and should not be manually modified.
+This log was last generated on Sun, 18 Jun 2023 12:42:44 GMT and should not be manually modified.
+
+## 1.6.0
+
+Sun, 18 Jun 2023 12:42:44 GMT
+
+### Minor changes
+
+- feat: support next
 
 ## 1.5.4
 

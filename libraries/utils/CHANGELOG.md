@@ -1,6 +1,12 @@
 # Change Log - @compass-aiden/utils
 
-This log was last generated on Fri, 16 Jun 2023 07:41:15 GMT and should not be manually modified.
+This log was last generated on Sun, 18 Jun 2023 12:42:44 GMT and should not be manually modified.
+
+## 1.6.6
+
+Sun, 18 Jun 2023 12:42:44 GMT
+
+_Version update only_
 
 ## 1.6.5
 
