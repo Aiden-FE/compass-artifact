@@ -83,6 +83,9 @@ module.exports = {
     // next使用此配置
     '@compass-aiden/eslint-config/next',
   ],
+  parserOptions: {
+    project: ['tsconfig.json'],
+  },
 };
 ```
 
