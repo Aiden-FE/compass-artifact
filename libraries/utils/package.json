@@ -1,6 +1,6 @@
 {
   "name": "@compass-aiden/utils",
-  "version": "1.6.5",
+  "version": "1.6.6",
   "description": "实用程序库",
   "main": "dist/main.umd.js",
   "jsdelivr": "dist/main.umd.js",
