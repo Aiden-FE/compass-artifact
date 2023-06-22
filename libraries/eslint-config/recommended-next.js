@@ -4,5 +4,6 @@ module.exports = {
   ),
   rules: {
     'react/function-component-definition': [2, { namedComponents: ['arrow-function', 'function-declaration'] }],
+    'react-refresh/only-export-components': 'off',
   },
 };
