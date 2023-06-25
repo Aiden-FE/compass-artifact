@@ -1,6 +1,6 @@
 {
   "name": "@compass-aiden/eslint-config",
-  "version": "1.5.3",
+  "version": "1.6.1",
   "description": "Recommend eslint config",
   "main": "recommended-base.js",
   "exports": {
@@ -10,7 +10,8 @@
     "./vue2": "./recommended-vue2.js",
     "./react": "./recommended-react.js",
     "./angular": "./recommended-angular.js",
-    "./nest": "./recommended-nest.js"
+    "./nest": "./recommended-nest.js",
+    "./next": "./recommended-next.js"
   },
   "author": "Aiden_FE@outlook.com",
   "license": "MIT",

@@ -2,6 +2,30 @@
   "name": "@compass-aiden/commander",
   "entries": [
     {
+      "version": "1.2.3",
+      "tag": "@compass-aiden/commander_v1.2.3",
+      "date": "Sun, 18 Jun 2023 12:42:44 GMT",
+      "comments": {
+        "dependency": [
+          {
+            "comment": "Updating dependency \"@compass-aiden/eslint-config\" to `1.6.0`"
+          }
+        ]
+      }
+    },
+    {
+      "version": "1.2.2",
+      "tag": "@compass-aiden/commander_v1.2.2",
+      "date": "Fri, 16 Jun 2023 07:41:15 GMT",
+      "comments": {
+        "dependency": [
+          {
+            "comment": "Updating dependency \"@compass-aiden/eslint-config\" to `1.5.4`"
+          }
+        ]
+      }
+    },
+    {
       "version": "1.2.1",
       "tag": "@compass-aiden/commander_v1.2.1",
       "date": "Fri, 16 Jun 2023 02:29:27 GMT",

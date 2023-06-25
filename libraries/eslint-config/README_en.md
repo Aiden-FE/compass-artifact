@@ -49,6 +49,48 @@ yarn add -D @compass-aiden/eslint-config eslint eslint-plugin-import
 
 :::
 
+### Nextjs environment using
+
+Install pre-dependencies
+
+::: tabs#npmManager
+
+@tab pnpm
+
+```shell
+pnpm add -D eslint-config-next eslint-config-airbnb eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-react-hooks eslint-config-airbnb-typescript @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-plugin-react-refresh
+```
+
+@tab npm
+
+```shell
+npm add -D eslint-config-next eslint-config-airbnb eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-react-hooks eslint-config-airbnb-typescript @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-plugin-react-refresh
+```
+
+@tab yarn
+
+```shell
+yarn add -D eslint-config-next eslint-config-airbnb eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-react-hooks eslint-config-airbnb-typescript @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-plugin-react-refresh
+```
+
+:::
+
+Update the '.eslintrc' configuration file:
+
+```javascript
+module.exports = {
+  extends: [
+    // Add this configuration inside nextjs
+    '@compass-aiden/eslint-config/next',
+  ],
+  parserOptions: {
+    project: ['tsconfig.json'],
+  },
+};
+```
+
+Use `next lint`
+
 ### Nestjs environment using
 
 Install pre-dependencies
