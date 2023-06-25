@@ -41,13 +41,6 @@ yarn add -g @microsoft/rush
 
 Use `rush update` command to restore dependencies.
 
-:::warning
-If the above command fails, or if you are running the project for the first time locally, and it fails, run `pnpm install` at the root directory.
-
-> You can check the details in package.json at the root directory. In fact, it is the execution context of commitlint that cannot find the dependency package, and then you need to restore this dependency at the root directory.
-
-:::
-
 ### Running Project Commands Locally
 
 Execute `rushx [script_name]` at the project path. This command can run the scripts command inside the project.

@@ -1,9 +1,0 @@
-{
-  "name": "compass-artifact",
-  "version": "1.0.0",
-  "description": "Compass 综合物料平台",
-  "scripts": {},
-  "devDependencies": {
-    "@commitlint/config-conventional": "^17.4.4"
-  }
-}

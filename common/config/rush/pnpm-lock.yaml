@@ -6,7 +6,7 @@ importers:
 
   ../../libraries/commander:
     specifiers:
-      '@compass-aiden/eslint-config': workspace:^1.6.0
+      '@compass-aiden/eslint-config': workspace:^1.6.1
       '@rollup/plugin-commonjs': ^22.0.2
       '@rollup/plugin-json': ^4.1.0
       '@types/adm-zip': ^0.5.0
@@ -147,7 +147,7 @@ importers:
 
   ../../libraries/utils:
     specifiers:
-      '@compass-aiden/eslint-config': workspace:^1.6.0
+      '@compass-aiden/eslint-config': workspace:^1.6.1
       '@rollup/plugin-commonjs': ~23.0.7
       '@rollup/plugin-json': ~5.0.2
       '@rollup/plugin-node-resolve': ~15.0.1

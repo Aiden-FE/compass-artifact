@@ -84,16 +84,17 @@ export default defineConfig({
 
 ##### dist/assets/base.css 内的 CSS 变量
 
-- --cp-page-bg-color 页面背景颜色
+- --#{$domain}-page-bg-color 页面背景颜色
 
 ##### dist/assets/tools.css 内的 CSS 变量
 
-- --cp-selection-color 选择区颜色
-- --cp-selection-bg-color 选择区背景色
+- --#{$domain}-selection-color 选择区颜色
+- --#{$domain}-selection-bg-color 选择区背景色
 
 ##### dist/assets/scrollbar.css 内的 CSS 变量
 
-- --cp-scrollbar-bg-color 滚动条背景色
-- --cp-scrollbar-thumb-bg-color 滚动条滑块背景色
-- --cp-scrollbar-thumb-border-color 滚动条滑块边框色
-- --cp-scrollbar-track-bg-color 滚动条外层轨道背景色
+- --#{$domain}-scrollbar-size 滚动条 y, x 的宽高
+- --#{$domain}-scrollbar-bg-color 滚动条背景色
+- --#{$domain}-scrollbar-thumb-bg-color 滚动条滑块背景色
+- --#{$domain}-scrollbar-thumb-border-color 滚动条滑块边框色
+- --#{$domain}-scrollbar-track-bg-color 滚动条外层轨道背景色
