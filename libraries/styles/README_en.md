@@ -84,16 +84,17 @@ Used within the template, using Vue as an example
 
 ##### CSS variables in dist/assets/base.css
 
-- --cp-page-bg-color Page background color
+- --#{$domain}-page-bg-color Page background color
 
 ##### CSS variables in dist/assets/tools.css
 
-- --cp-selection-color Select area color
-- --cp-selection-bg-color Select area background color
+- --#{$domain}-selection-color Select area color
+- --#{$domain}-selection-bg-color Select area background color
 
 ##### CSS variables in dist/assets/scrollbar.css
 
-- --cp-scrollbar-bg-color Scroll bar background color
-- --cp-scrollbar-thumb-bg-color Scroll bar slider background color
-- --cp-scrollbar-thumb-border-color Scroll bar slider border color
-- --cp-scrollbar-track-bg-color Scroll bar outer track background color
+- --#{$domain}-scrollbar-size Scroll bar y, x width and height
+- --#{$domain}-scrollbar-bg-color Scroll bar background color
+- --#{$domain}-scrollbar-thumb-bg-color Scroll bar slider background color
+- --#{$domain}-scrollbar-thumb-border-color Scroll bar slider border color
+- --#{$domain}-scrollbar-track-bg-color Scroll bar outer track background color

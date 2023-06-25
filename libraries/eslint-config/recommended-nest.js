@@ -11,7 +11,5 @@ module.exports = {
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
     'import/prefer-default-export': 'off',
-    // 解决使用@nestjs/testing会error的问题
-    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
   },
 };
