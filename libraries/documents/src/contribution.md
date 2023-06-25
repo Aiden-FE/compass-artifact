@@ -41,13 +41,6 @@ yarn add -g @microsoft/rush
 
 通过 `rush update` 恢复依赖
 
-:::warning
-如果上面的命令发生异常,或项目是在本地 **首次运行** 发生异常则在根目录执行 `pnpm install`
-
-> 该步骤详情可通过根目录 package.json 查看,实际是 commitlint 的执行上下文找不到依赖包,才需要在根目录恢复此依赖
-
-:::
-
 ### 执行项目内命令
 
 在项目路径下执行 `rushx [script_name]` 此命令可运行项目内 scripts 命令
