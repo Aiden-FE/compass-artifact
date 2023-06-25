@@ -76,7 +76,6 @@ jobs:
         env:
           HUSKY: 0
         run: |
-          pnpm install
           node common/scripts/install-run-rush.js install
 
       # 构建整个仓库项目
