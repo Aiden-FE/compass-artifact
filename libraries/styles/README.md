@@ -96,6 +96,7 @@ export default defineConfig({
 ##### dist/assets/scrollbar.css 内的 CSS 变量
 
 > DOM Class 添加 cp-scrollbar 即可使用
+>
 > 添加 cp-scrollbar 后, DOM Class 添加 cp-scrollbar_fixed 即可使用滚动条固定模式
 
 - --#{$domain}-scrollbar-size 滚动条 y, x 的宽高
