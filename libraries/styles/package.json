@@ -1,6 +1,6 @@
 {
   "name": "@compass-aiden/styles",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "基础样式库",
   "main": "dist/assets/main.css",
   "type": "module",
