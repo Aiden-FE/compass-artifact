@@ -88,10 +88,15 @@ Used within the template, using Vue as an example
 
 ##### CSS variables in dist/assets/tools.css
 
+> DOM Class Add cp-selection to use text selection color control
+
 - --#{$domain}-selection-color Select area color
 - --#{$domain}-selection-bg-color Select area background color
 
 ##### CSS variables in dist/assets/scrollbar.css
+
+> DOM Class Add cp-scrollbar to use
+> After adding the cp-scrollbar, the DOM Class adds the cp-scrollbar_fixed to fix the pattern with the scroll bar
 
 - --#{$domain}-scrollbar-size Scroll bar y, x width and height
 - --#{$domain}-scrollbar-bg-color Scroll bar background color

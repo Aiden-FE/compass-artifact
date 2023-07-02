@@ -88,10 +88,15 @@ export default defineConfig({
 
 ##### dist/assets/tools.css 内的 CSS 变量
 
+> DOM Class 添加 cp-selection 即可使用文本选择颜色控制
+
 - --#{$domain}-selection-color 选择区颜色
 - --#{$domain}-selection-bg-color 选择区背景色
 
 ##### dist/assets/scrollbar.css 内的 CSS 变量
+
+> DOM Class 添加 cp-scrollbar 即可使用
+> 添加 cp-scrollbar 后, DOM Class 添加 cp-scrollbar_fixed 即可使用滚动条固定模式
 
 - --#{$domain}-scrollbar-size 滚动条 y, x 的宽高
 - --#{$domain}-scrollbar-bg-color 滚动条背景色
