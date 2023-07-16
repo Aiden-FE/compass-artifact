@@ -58,19 +58,19 @@ yarn add -D @compass-aiden/eslint-config eslint eslint-plugin-import
 @tab pnpm
 
 ```shell
-pnpm add -D eslint-config-next eslint-config-airbnb eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-react-hooks eslint-config-airbnb-typescript @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-plugin-react-refresh
+pnpm add -D eslint-config-next eslint-config-airbnb eslint-plugin-jsx-a11y eslint-plugin-react eslint-config-airbnb-typescript @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-plugin-react-refresh
 ```
 
 @tab npm
 
 ```shell
-npm add -D eslint-config-next eslint-config-airbnb eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-react-hooks eslint-config-airbnb-typescript @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-plugin-react-refresh
+npm add -D eslint-config-next eslint-config-airbnb eslint-plugin-jsx-a11y eslint-plugin-react eslint-config-airbnb-typescript @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-plugin-react-refresh
 ```
 
 @tab yarn
 
 ```shell
-yarn add -D eslint-config-next eslint-config-airbnb eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-react-hooks eslint-config-airbnb-typescript @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-plugin-react-refresh
+yarn add -D eslint-config-next eslint-config-airbnb eslint-plugin-jsx-a11y eslint-plugin-react eslint-config-airbnb-typescript @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-plugin-react-refresh
 ```
 
 :::
