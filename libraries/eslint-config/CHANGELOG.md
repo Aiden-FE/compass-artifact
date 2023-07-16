@@ -1,6 +1,14 @@
 # Change Log - @compass-aiden/eslint-config
 
-This log was last generated on Thu, 22 Jun 2023 14:23:24 GMT and should not be manually modified.
+This log was last generated on Sun, 16 Jul 2023 14:39:20 GMT and should not be manually modified.
+
+## 1.6.2
+
+Sun, 16 Jul 2023 14:39:20 GMT
+
+### Patches
+
+- fix(eslint): next 规则不再直接继承 react,移除对 hooks 的依赖
 
 ## 1.6.1
 

@@ -2,6 +2,18 @@
   "name": "@compass-aiden/eslint-config",
   "entries": [
     {
+      "version": "1.6.2",
+      "tag": "@compass-aiden/eslint-config_v1.6.2",
+      "date": "Sun, 16 Jul 2023 14:39:20 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "fix(eslint): next规则不再直接继承react,移除对hooks的依赖"
+          }
+        ]
+      }
+    },
+    {
       "version": "1.6.1",
       "tag": "@compass-aiden/eslint-config_v1.6.1",
       "date": "Thu, 22 Jun 2023 14:23:24 GMT",
