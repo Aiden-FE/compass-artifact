@@ -1,6 +1,14 @@
 # Change Log - @compass-aiden/utils
 
-This log was last generated on Sun, 18 Jun 2023 12:42:44 GMT and should not be manually modified.
+This log was last generated on Sat, 29 Jul 2023 09:14:27 GMT and should not be manually modified.
+
+## 1.7.0
+
+Sat, 29 Jul 2023 09:14:27 GMT
+
+### Minor changes
+
+- feat(utils): 支持日志记录器
 
 ## 1.6.6
 

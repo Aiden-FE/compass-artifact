@@ -2,6 +2,18 @@
   "name": "@compass-aiden/eslint-config",
   "entries": [
     {
+      "version": "1.6.3",
+      "tag": "@compass-aiden/eslint-config_v1.6.3",
+      "date": "Sat, 29 Jul 2023 09:14:27 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "feat: next eslint"
+          }
+        ]
+      }
+    },
+    {
       "version": "1.6.2",
       "tag": "@compass-aiden/eslint-config_v1.6.2",
       "date": "Sun, 16 Jul 2023 14:39:20 GMT",
