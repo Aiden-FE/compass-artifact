@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@compass-aiden/utils",
+      "comment": "feat(utils): 支持日志记录器",
+      "type": "minor"
+    }
+  ],
+  "packageName": "@compass-aiden/utils"
+}

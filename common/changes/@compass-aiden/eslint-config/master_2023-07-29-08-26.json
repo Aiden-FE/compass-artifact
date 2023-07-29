@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@compass-aiden/eslint-config",
+      "comment": "feat: next eslint",
+      "type": "patch"
+    }
+  ],
+  "packageName": "@compass-aiden/eslint-config"
+}

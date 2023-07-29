@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@compass-aiden/commander",
+      "comment": "",
+      "type": "none"
+    }
+  ],
+  "packageName": "@compass-aiden/commander"
+}
