@@ -7,6 +7,7 @@ import summary from 'rollup-plugin-summary';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import serve from 'rollup-plugin-serve';
+import { visualizer } from 'rollup-plugin-visualizer';
 import pkg from './package.json';
 
 const moduleList = require('./entry');
@@ -15,7 +16,7 @@ const isProd = !process.env.ROLLUP_WATCH;
 
 /**
  * @description 获取构建插件
- * @param {('serve'|'nodeResolve'|'commonjs'|'compiler'|'terser'|'cleanup'|'summary')[]} disablePlugins 待禁用的插件
+ * @param {('serve'|'nodeResolve'|'commonjs'|'compiler'|'terser'|'cleanup'|'summary'|'visualizer')[]} disablePlugins 待禁用的插件
  * @param {{[key: string]: object}} options
  * @return {(Plugin|false|{generateBundle: generateBundle, name: string})[]}
  */
@@ -27,13 +28,13 @@ function getPlugins(disablePlugins = [], options = {}) {
       !isProd &&
       serve(
         options.serve || {
-          port: 3000,
+          port: 3060,
           contentBase: '.',
         },
       ),
     // 如果目标是node环境,需要提供选项{ exportConditions: ["node"] }以支持构建
-    !disablePlugins.includes('nodeResolve') && isProd && nodeResolve(options.nodeResolve || undefined),
-    !disablePlugins.includes('commonjs') && isProd && commonjs(options.commonjs || undefined),
+    !disablePlugins.includes('nodeResolve') && nodeResolve(options.nodeResolve || undefined),
+    !disablePlugins.includes('commonjs') && commonjs(options.commonjs || undefined),
     !disablePlugins.includes('terser') && isProd && terser(options.terser || undefined),
     !disablePlugins.includes('cleanup') && isProd && cleanup(options.cleanup || { comments: 'none' }),
     !disablePlugins.includes('summary') &&
@@ -47,6 +48,7 @@ function getPlugins(disablePlugins = [], options = {}) {
           showMinifiedSize: true,
         },
       ),
+    !disablePlugins.includes('visualizer') && isProd && visualizer(options.visualizer || undefined),
   ];
 }
 

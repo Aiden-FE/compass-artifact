@@ -179,6 +179,49 @@ async function invoke() {
 invoke();
 ```
 
+### Date
+
+#### formatDate
+
+**版本**:
+
+1.7.0
+
+**描述**:
+
+时间格式化
+
+**类型**:
+
+```typescript
+/**
+ * @description 时间格式化
+ * @param date
+ * @param format 格式化字符串; YYYY-年, MM 月, DD 日, hh 时, mm 分, ss 秒, SSS 毫秒
+ * @param [option] 配置项
+ * @param [option.isPadStart=true] 是否填充字符
+ * @param [option.padSymbol='0'] 填充字符
+ */
+declare function formatDate(
+  date?: string | number | Date,
+  format?: string,
+  option?: {
+    isPadStart?: boolean;
+    padSymbol?: string;
+  },
+): string;
+```
+
+**示例**:
+
+```typescript
+import { formatDate } from '@compass-aiden/utils';
+
+formatDate(); // 返回当前时间,格式为 'YYYY-MM-DD hh:mm:ss'
+formatDate('2020/03/12'); // 指定可被Date处理的时间字符串,格式为 'YYYY-MM-DD hh:mm:ss'
+formatDate(Date.now(), 'YYYY/MM/DD'); // 指定可被Date处理的时间戳,格式为 'YYYY/MM/DD'
+```
+
 ### Class
 
 #### ThemeManager
@@ -259,6 +302,103 @@ theme.getThemeData(); // 返回当前使用主题的数据
 theme.getThemeData('dark'); // 获取指定主题变量,不提供参数,则默认返回当前使用主题的数据
 theme.unregister('purple'); // 移除已注册的主题
 theme.destroy(); // 移除主题管理器,释放内部引用资源
+```
+
+#### Logger
+
+**版本**:
+
+1.7.0
+
+**描述**:
+
+日志记录器
+
+**类型**:
+
+```typescript
+/** 日志配置选项 */
+interface LoggerOption {
+  /** 业务域标题 */
+  subject: string;
+  /** 日志输出级别, debug级别最低,error级别最高,大于等于指定级别均会打印日志 */
+  logLevel: 'debug' | 'log' | 'info' | 'success' | 'warn' | 'error';
+  /** 标题前缀 */
+  prefix: string;
+  /** 标题后缀 */
+  suffix: string;
+  /** 日志格式化字符串 */
+  dateFormat: string | boolean;
+  /** 日期不足位数是否补0 */
+  isDatePadZero: boolean;
+  /** 各日志样式 */
+  styles: {
+    debug: string;
+    log: string;
+    info: string;
+    success: string;
+    warn: string;
+    error: string;
+  };
+  /** 打印后的hook函数,可以用来自行实现日志堆栈或node写日志文件 */
+  afterPrintln?: (...args: unknown[]) => void;
+}
+/**
+ * @description 日志记录器
+ */
+declare class Logger {
+  static config: LoggerOption;
+  config: LoggerOption;
+  static updateConfig(option?: Partial<LoggerOption>): void;
+  updateConfig(option?: Partial<LoggerOption>): void;
+  static debug(...args: unknown[]): void;
+  debug(...args: unknown[]): void;
+  static log(...args: unknown[]): void;
+  log(...args: unknown[]): void;
+  static info(...args: unknown[]): void;
+  info(...args: unknown[]): void;
+  static success(...args: unknown[]): void;
+  success(...args: unknown[]): void;
+  static warn(...args: unknown[]): void;
+  warn(...args: unknown[]): void;
+  static error(...args: unknown[]): void;
+  error(...args: unknown[]): void;
+}
+```
+
+**示例**:
+
+```typescript
+import { Logger } from '@compass-aiden/utils';
+// 单例模式使用
+console.log(Logger.config); // 默认配置项
+Logger.config.logLevel = 'debug'; // 修改单个配置
+Logger.updateConfig({
+  logLevel: 'debug',
+  dateFormat: 'YYYY-MM-DD hh:mm:ss:SSS',
+}); // 批量修改配置
+Logger.debug('Hello world');
+Logger.log('Hello world');
+Logger.info('Hello world');
+Logger.success('Hello world');
+Logger.warn('Hello world');
+Logger.error('Hello world');
+
+// 多例模式使用
+const loggerMulti = new Logger();
+console.log(loggerMulti.config); // 默认配置项
+loggerMulti.config.logLevel = 'debug'; // 修改单个配置
+loggerMulti.updateConfig({
+  subject: 'Aiden2',
+  logLevel: 'debug',
+  dateFormat: 'YYYY-MM-DD hh:mm:ss',
+}); // 批量修改配置
+loggerMulti.debug('Hello world');
+loggerMulti.log('Hello world');
+loggerMulti.info('Hello world');
+loggerMulti.success('Hello world');
+loggerMulti.warn('Hello world');
+loggerMulti.error('Hello world');
 ```
 
 ### Util

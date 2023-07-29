@@ -179,6 +179,49 @@ async function invoke() {
 invoke();
 ```
 
+### Date
+
+#### formatDate
+
+**Version**:
+
+1.7.0
+
+**Description**:
+
+Date format
+
+**Type**:
+
+```typescript
+/**
+ * @description Date format
+ * @param date
+ * @param format Format string; YYYY year, MM month, DD day, hh hours, mm minutes, ss seconds, SSS milliseconds
+ * @param [option] Configuration
+ * @param [option.isPadStart=true] Whether to fill characters
+ * @param [option.padSymbol='0'] Fill character
+ */
+declare function formatDate(
+  date?: string | number | Date,
+  format?: string,
+  option?: {
+    isPadStart?: boolean;
+    padSymbol?: string;
+  },
+): string;
+```
+
+**Example**:
+
+```typescript
+import { formatDate } from '@compass-aiden/utils';
+
+formatDate(); // Returns the current time in the format 'YYYY-MM-DD hh:mm:ss'
+formatDate('2020/03/12'); // Specifies the time string that can be processed by Date, in the format of 'YYYY-MM-DD hh:mm:ss'
+formatDate(Date.now(), 'YYYY/MM/DD'); // Specifies a timestamp that can be processed by Date, in the format 'YYYY/MM/DD'
+```
+
 ### Class
 
 #### ThemeManager
@@ -259,6 +302,103 @@ theme.getThemeData(); // Returns data for the currently used theme
 theme.getThemeData('dark'); // Gets the specified theme variable, and returns the data of the currently used theme by default if
 theme.unregister('purple'); // Remove a registered topic
 theme.destroy(); // Remove the theme manager and release the internal reference resources
+```
+
+#### Logger
+
+**Version**:
+
+1.7.0
+
+**Description**:
+
+Logger
+
+**Type**:
+
+```typescript
+/** Log Configuration Options */
+interface LoggerOption {
+  /** Business Domain Title */
+  subject: string;
+  /** Log output level, the lowest debug level, the highest error level, greater than or equal to the specified level will print the log */
+  logLevel: 'debug' | 'log' | 'info' | 'success' | 'warn' | 'error';
+  /** Title Prefix */
+  prefix: string;
+  /** Title Suffix */
+  suffix: string;
+  /** Log Format String */
+  dateFormat: string | boolean;
+  /** Date digit filled with 0 */
+  isDatePadZero: boolean;
+  /** Log style */
+  styles: {
+    debug: string;
+    log: string;
+    info: string;
+    success: string;
+    warn: string;
+    error: string;
+  };
+  /** The hook function after printing can be used to implement the log stack or write log files by node. */
+  afterPrintln?: (...args: unknown[]) => void;
+}
+/**
+ * @description Logger
+ */
+declare class Logger {
+  static config: LoggerOption;
+  config: LoggerOption;
+  static updateConfig(option?: Partial<LoggerOption>): void;
+  updateConfig(option?: Partial<LoggerOption>): void;
+  static debug(...args: unknown[]): void;
+  debug(...args: unknown[]): void;
+  static log(...args: unknown[]): void;
+  log(...args: unknown[]): void;
+  static info(...args: unknown[]): void;
+  info(...args: unknown[]): void;
+  static success(...args: unknown[]): void;
+  success(...args: unknown[]): void;
+  static warn(...args: unknown[]): void;
+  warn(...args: unknown[]): void;
+  static error(...args: unknown[]): void;
+  error(...args: unknown[]): void;
+}
+```
+
+**Example**:
+
+```typescript
+import { Logger } from '@compass-aiden/utils';
+// Singleton pattern use
+console.log(Logger.config); // Default Configuration
+Logger.config.logLevel = 'debug'; // Modify a single configuration
+Logger.updateConfig({
+  logLevel: 'debug',
+  dateFormat: 'YYYY-MM-DD hh:mm:ss:SSS',
+}); // Batch Modify Configuration
+Logger.debug('Hello world');
+Logger.log('Hello world');
+Logger.info('Hello world');
+Logger.success('Hello world');
+Logger.warn('Hello world');
+Logger.error('Hello world');
+
+// Multiple case mode usage
+const loggerMulti = new Logger();
+console.log(loggerMulti.config); // Default Configuration
+loggerMulti.config.logLevel = 'debug'; // Modify a single configuration
+loggerMulti.updateConfig({
+  subject: 'Aiden2',
+  logLevel: 'debug',
+  dateFormat: 'YYYY-MM-DD hh:mm:ss',
+}); // Batch Modify Configuration
+loggerMulti.debug('Hello world');
+loggerMulti.log('Hello world');
+loggerMulti.info('Hello world');
+loggerMulti.success('Hello world');
+loggerMulti.warn('Hello world');
+loggerMulti.error('Hello world');
 ```
 
 ### Util

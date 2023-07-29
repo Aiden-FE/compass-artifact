@@ -169,3 +169,5 @@ speed-measure-plugin*.json
 # documents临时文件
 index.html.js
 index.html.vue
+
+stats.html

@@ -7,8 +7,34 @@
     <p>Hello World</p>
 
     <script type="module">
-      import { demo } from './dist/utils.es.js';
-      demo();
+      import { Logger } from './dist/main.es.js';
+
+      const loggerMulti = new Logger();
+
+      Logger.updateConfig({
+        subject: 'Aiden',
+        dateFormat: 'YYYY-MM-DD',
+      });
+
+      loggerMulti.updateConfig({
+        subject: 'Aiden2',
+        logLevel: 'debug',
+        dateFormat: 'YYYY-MM-DD hh:mm:ss',
+      });
+
+      Logger.debug('Hello world');
+      Logger.log('Hello world');
+      Logger.info('Hello world');
+      Logger.success('Hello world');
+      Logger.warn('Hello world');
+      Logger.error('Hello world');
+
+      loggerMulti.debug('Hello world');
+      loggerMulti.log('Hello world');
+      loggerMulti.info('Hello world');
+      loggerMulti.success('Hello world');
+      loggerMulti.warn('Hello world');
+      loggerMulti.error('Hello world');
     </script>
   </body>
 </html>
