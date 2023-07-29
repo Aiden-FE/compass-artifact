@@ -11,5 +11,6 @@ module.exports = {
     'react/function-component-definition': [2, { namedComponents: ['arrow-function', 'function-declaration'] }],
     'react-refresh/only-export-components': 'off',
     'react-hooks/rules-of-hooks': 'off',
+    'react/require-default-props': 'off', // 即将废弃,建议通过函数组件设置默认值
   },
 };
