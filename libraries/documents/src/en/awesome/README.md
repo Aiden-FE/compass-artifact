@@ -95,6 +95,7 @@ description: Technical selection suggestions suitable for various scenarios
 - 🌟🌟🌟🌟 [CodeMirror](https://codemirror.net/) Scalable Code Editor
 - 🌟🌟🌟🌟 [Handsontable](https://handsontable.com/) Frontend Excel spreadsheet solution
 - 🌟🌟🌟 [formjs](https://bpmn.io/toolkit/form-js/) Form Editor
+- 🌟🌟🌟 [canvas-editor](https://hufe.club/canvas-editor/) 基于canvas实现的富文本编辑器
 
 ### Front end engineering
 
