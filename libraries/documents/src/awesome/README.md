@@ -95,6 +95,7 @@ description: 适用于各类场景的技术选型建议
 - 🌟🌟🌟🌟 [CodeMirror](https://codemirror.net/) 可扩展的代码编辑器
 - 🌟🌟🌟🌟 [Handsontable](https://handsontable.com/) 前端 Excel 表格解决方案
 - 🌟🌟🌟 [formjs](https://bpmn.io/toolkit/form-js/) 表单编辑器
+- 🌟🌟🌟 [canvas-editor](https://hufe.club/canvas-editor/) 基于canvas实现的富文本编辑器
 
 ### 前端工程
 
