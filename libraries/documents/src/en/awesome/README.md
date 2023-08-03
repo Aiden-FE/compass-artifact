@@ -90,6 +90,7 @@ description: Technical selection suggestions suitable for various scenarios
 - 🌟🌟🌟🌟🌟 [BPMN](https://bpmn.io/toolkit/bpmn-js/) Bpmn workflow engine
 - 🌟🌟🌟🌟🌟 [DMN](https://bpmn.io/toolkit/dmn-js/) DMN Decision Model
 - 🌟🌟🌟🌟🌟 [formilyjs](https://v2.formilyjs.org/) Alibaba Forms Solution
+- 🌟🌟🌟🌟🌟 [Markdown it](https://github.com/markdown-it/markdown-it) Next generation markdown parser in javascript, with pluggable syntax!
 - 🌟🌟🌟🌟 [stenciljs](https://stenciljs.com/) Cross Framework Web Component Scaffolding
 - 🌟🌟🌟🌟 [Bit](https://bit.dev/) Component driven development
 - 🌟🌟🌟🌟 [CodeMirror](https://codemirror.net/) Scalable Code Editor
