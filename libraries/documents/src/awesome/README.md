@@ -90,6 +90,7 @@ description: 适用于各类场景的技术选型建议
 - 🌟🌟🌟🌟🌟 [BPMN](https://bpmn.io/toolkit/bpmn-js/) bpmn 工作流引擎
 - 🌟🌟🌟🌟🌟 [DMN](https://bpmn.io/toolkit/dmn-js/) dmn 决策模型
 - 🌟🌟🌟🌟🌟 [formilyjs](https://v2.formilyjs.org/) 阿里巴巴表单解决方案
+- 🌟🌟🌟🌟🌟 [Markdown it](https://github.com/markdown-it/markdown-it) Markdown解析器
 - 🌟🌟🌟🌟 [stenciljs](https://stenciljs.com/) 跨框架 Web Component 脚手架
 - 🌟🌟🌟🌟 [Bit](https://bit.dev/) 组件驱动开发
 - 🌟🌟🌟🌟 [CodeMirror](https://codemirror.net/) 可扩展的代码编辑器
