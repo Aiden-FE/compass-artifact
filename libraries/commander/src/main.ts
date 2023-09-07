@@ -10,9 +10,5 @@ export default () => {
 
   Object.keys(allCommands).forEach((key) => (allCommands as Record<string, Function>)[key](program));
 
-  program
-    .version(`v${version}`, '-v, --version')
-    .description('从0到1搭建前端脚手架')
-    .usage('<command> [option]')
-    .parse(process.argv);
+  program.version(`v${version}`, '-v, --version').description('脚手架').usage('<command> [option]').parse(process.argv);
 };
