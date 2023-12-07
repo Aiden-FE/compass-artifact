@@ -6,7 +6,9 @@ module.exports = {
     es6: true,
   },
   parserOptions: {
-    project: './tsconfig.json',
+    tsconfigRootDir: __dirname,
+    project: ['./tsconfig.json'],
+    sourceType: 'module',
   },
   extends: [
     // typescript使用此配置

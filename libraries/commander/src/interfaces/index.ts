@@ -34,3 +34,6 @@ export interface CustomTemplate {
 }
 
 export type SelectionTemplate = PresetTemplate | CustomTemplate;
+
+/** 将数组类型转换为联合类型 */
+export type ConvertArrayToUnion<T extends any[]> = T extends Array<infer U> ? U : never;
