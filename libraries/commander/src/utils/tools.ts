@@ -58,6 +58,15 @@ export function generateFolder(targetPath: string) {
   });
 }
 
+export function createFile(
+  filePath: string,
+  fileData: string | NodeJS.ArrayBufferView,
+  options?: { cwd?: string; encoding?: BufferEncoding },
+) {
+  const target = path.resolve(options?.cwd || process.cwd(), filePath);
+  fs.writeFileSync(target, fileData, { encoding: options?.encoding || 'utf8' });
+}
+
 export function formatDate(date: Date, format = 'YYYY-MM-DD hh:mm:ss') {
   let str = format;
   const year = date.getFullYear().toString();
@@ -95,9 +104,9 @@ export function isCommandExists(command: string) {
  * 检查路径下文件或文件夹是否存在
  * @param path
  */
-export function checkPathExists(path: string) {
+export function checkPathExists(p: string) {
   try {
-    fs.accessSync(path);
+    fs.accessSync(p);
     return true;
   } catch (err) {
     return false;
@@ -121,3 +130,52 @@ export function requireModule(filePath: string) {
   const requireFunc = createRequire(import.meta.url);
   return requireFunc(filePath);
 }
+
+// const fs = require('fs');
+// const esprima = require('esprima');
+// const escodegen = require('escodegen');
+
+// // 读取文件内容
+// fs.readFile('yourfile.js', 'utf8', function (err, data) {
+//   if (err) {
+//     return console.error(err);
+//   }
+
+//   // 解析为AST
+//   const ast = esprima.parseScript(data, { comment: true });
+
+//   // 找到module.exports对象
+//   const exportsAssignment = ast.body.find(
+//     node => node.type === 'ExpressionStatement'
+//       && node.expression.type === 'AssignmentExpression'
+//       && node.expression.left.object.name === 'module'
+//       && node.expression.left.property.name === 'exports'
+//   );
+
+//   if (!exportsAssignment) {
+//     console.error("module.exports not found in the provided JavaScript file.");
+//     return;
+//   }
+
+//   // 找到extends数组
+//   const extendsArray = exportsAssignment.expression.right.properties.find(
+//     prop => prop.key.name === 'extends'
+//   ).value.elements;
+
+//   if (!extendsArray) {
+//     console.error("'extends' property not found in the provided JavaScript file.");
+//     return;
+//   }
+
+//   // 需要将extends的值修改为什么，请在这里添加
+//   extendsArray[0].value = "new_value";
+
+//   // 生成新的代码并写入文件
+//   const newCode = escodegen.generate(ast, { comment: true });
+
+//   fs.writeFile('yourfile.js', newCode, 'utf8', function (err) {
+//     if (err) {
+//       return console.error(err);
+//     }
+//   });
+// });
