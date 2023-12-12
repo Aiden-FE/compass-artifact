@@ -2,8 +2,9 @@ import { readFileSync, writeFileSync } from 'fs';
 import inquirer from 'inquirer';
 import ora from 'ora';
 import chalk from 'chalk';
-import { Logger } from '~/services';
-import { checkPathExists, pathJoin, createFile } from '~/utils';
+import * as astring from 'astring';
+import { checkPathExists, pathJoin, createFile, getASTTreeOfFile } from '~/utils';
+import { ESLINT_PLUGINS } from '~/constants';
 
 interface UseNextCommonOption {
   /**
@@ -34,7 +35,9 @@ export default function useEslintService(option: UseNextCommonOption) {
    */
   async function addEslintPlugin() {
     const loading = ora();
+    const printLog = [] as string[];
     let fileName = '';
+    let isCreateEslintFile = false;
     loading.start(chalk.cyan('正在扫描Eslint配置文件'));
     if (checkPathExists(pathJoin(opt.cwd, '.eslintrc'))) {
       fileName = pathJoin(opt.cwd, '.eslintrc');
@@ -46,10 +49,22 @@ export default function useEslintService(option: UseNextCommonOption) {
       fileName = pathJoin(opt.cwd, '.eslintrc.json');
     } else {
       createFile('.eslintrc.json', JSON.stringify({}), { cwd: opt.cwd });
-      loading.text = chalk.cyan('未找到Eslint配置文件,已新建Eslint配置文件');
       fileName = pathJoin(opt.cwd, '.eslintrc.json');
+      isCreateEslintFile = true;
+      printLog.push(chalk.green(`Created ${fileName}`));
+      loading.text = chalk.cyan('未找到Eslint配置文件,已新建Eslint配置文件');
     }
-    if (fileName.indexOf('.eslintrc.json') !== -1 || fileName.indexOf('.eslintrc') !== -1) {
+    loading.stop();
+    const { type } = await inquirer.prompt([
+      {
+        type: 'list',
+        name: 'type',
+        message: '请选择您的项目类型',
+        choices: ESLINT_PLUGINS,
+      },
+    ]);
+    loading.start(chalk.cyan('开始写入Eslint配置文件'));
+    if (fileName.endsWith('.eslintrc.json') || fileName.endsWith('.eslintrc')) {
       loading.text = chalk.cyan('正在读取Eslint配置文件');
       const data = readFileSync(fileName, 'utf8');
       const jsonData = JSON.parse(data);
@@ -65,34 +80,51 @@ export default function useEslintService(option: UseNextCommonOption) {
       } else if (!Array.isArray(jsonData.extends)) {
         jsonData.extends = [jsonData.extends];
       }
-      loading.stop();
-      const { type } = await inquirer.prompt([
-        {
-          type: 'list',
-          name: 'type',
-          message: '请选择您的项目类型',
-          choices: [
-            { name: 'Next', value: '@compass-aiden/eslint-config/next' },
-            { name: 'Vue', value: '@compass-aiden/eslint-config/vue' },
-            { name: 'React', value: '@compass-aiden/eslint-config/react' },
-            { name: 'Typescript', value: '@compass-aiden/eslint-config/ts' },
-            { name: 'Nest', value: '@compass-aiden/eslint-config/nest' },
-            { name: 'Vue2', value: '@compass-aiden/eslint-config/vue2' },
-            { name: 'Javascript', value: '@compass-aiden/eslint-config/js' },
-          ],
-        },
-      ]);
       if (!jsonData.extends.includes(type)) {
         jsonData.extends.push(type);
-        loading.start(chalk.cyan('写入Eslint配置文件'));
         writeFileSync(fileName, JSON.stringify(jsonData, null, 2), 'utf8');
-        Logger.warning(`Modified ${fileName}`);
+        if (!isCreateEslintFile) {
+          printLog.push(chalk.yellow(`Modified ${fileName}`));
+        }
       }
-      loading.succeed('Eslint 插件安装成功');
-    } else if (fileName.indexOf('.eslintrc.js') !== -1 || fileName.indexOf('.eslintrc.cjs') !== -1) {
-      // 读取文件,并修改字段
-      console.log(fileName);
+    } else if (fileName.endsWith('.eslintrc.js') || fileName.endsWith('.eslintrc.cjs')) {
+      const ast = getASTTreeOfFile(fileName, { cwd: undefined });
+      // 找到module.exports对象
+      const exportsAssignment: any = ast.body.find(
+        (node: any) =>
+          node.type === 'ExpressionStatement' &&
+          node.expression.type === 'AssignmentExpression' &&
+          node.expression.left.object.name === 'module' &&
+          node.expression.left.property.name === 'exports',
+      );
+      // 找到extends数组
+      let extendsArray = exportsAssignment.expression.right.properties.find((prop: any) => prop.key.name === 'extends')
+        ?.value.elements;
+      if (!extendsArray) {
+        extendsArray = [];
+        exportsAssignment.expression.right.properties.push({
+          type: 'Property',
+          key: { type: 'Identifier', name: 'extends' },
+          value: { type: 'ArrayExpression', elements: extendsArray },
+          kind: 'init',
+        });
+      }
+      if (!extendsArray.find((literal: any) => literal.value === type)) {
+        extendsArray.push({
+          type: 'Literal',
+          value: type,
+          raw: `'${type}'`,
+        });
+        writeFileSync(fileName, astring.generate(ast), { encoding: 'utf8' });
+        if (!isCreateEslintFile) {
+          printLog.push(chalk.yellow(`Modified ${fileName}`));
+        }
+      }
+      // FIXME: 还需要处理 parserOptions.project
     }
+    // FIXME: 处理package.json内的依赖与scripts命令
+    console.log(`\n${printLog.join('\n')}`);
+    loading.succeed('Eslint 插件安装成功');
   }
 
   return {

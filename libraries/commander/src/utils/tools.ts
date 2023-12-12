@@ -1,8 +1,11 @@
 import path from 'path';
 import process from 'process';
-import fs from 'fs';
+import fs, { readFileSync } from 'fs';
 import { execSync } from 'child_process';
 import { createRequire } from 'module';
+import * as acorn from 'acorn';
+import { type ecmaVersion } from 'acorn';
+// const acorn = require('acorn');
 
 /**
  * @description 比较两个版本的大小
@@ -131,51 +134,23 @@ export function requireModule(filePath: string) {
   return requireFunc(filePath);
 }
 
-// const fs = require('fs');
-// const esprima = require('esprima');
-// const escodegen = require('escodegen');
-
-// // 读取文件内容
-// fs.readFile('yourfile.js', 'utf8', function (err, data) {
-//   if (err) {
-//     return console.error(err);
-//   }
-
-//   // 解析为AST
-//   const ast = esprima.parseScript(data, { comment: true });
-
-//   // 找到module.exports对象
-//   const exportsAssignment = ast.body.find(
-//     node => node.type === 'ExpressionStatement'
-//       && node.expression.type === 'AssignmentExpression'
-//       && node.expression.left.object.name === 'module'
-//       && node.expression.left.property.name === 'exports'
-//   );
-
-//   if (!exportsAssignment) {
-//     console.error("module.exports not found in the provided JavaScript file.");
-//     return;
-//   }
-
-//   // 找到extends数组
-//   const extendsArray = exportsAssignment.expression.right.properties.find(
-//     prop => prop.key.name === 'extends'
-//   ).value.elements;
-
-//   if (!extendsArray) {
-//     console.error("'extends' property not found in the provided JavaScript file.");
-//     return;
-//   }
-
-//   // 需要将extends的值修改为什么，请在这里添加
-//   extendsArray[0].value = "new_value";
-
-//   // 生成新的代码并写入文件
-//   const newCode = escodegen.generate(ast, { comment: true });
-
-//   fs.writeFile('yourfile.js', newCode, 'utf8', function (err) {
-//     if (err) {
-//       return console.error(err);
-//     }
-//   });
-// });
+/**
+ * 获取文件的ast语法书
+ * @param filePath 文件路径
+ * @param options 配置项
+ * @returns {acorn.Program}
+ */
+export function getASTTreeOfFile(
+  filePath: string,
+  options?: { cwd?: string; encoding?: BufferEncoding; ecmaVersion?: ecmaVersion },
+) {
+  const { cwd, encoding } = {
+    encoding: 'utf8' as const,
+    cwd: process.cwd(),
+    ...options,
+  };
+  const target = typeof cwd !== 'undefined' ? path.resolve(cwd, filePath) : filePath;
+  const code = readFileSync(target, { encoding });
+  const ast = acorn.parse(code, { ecmaVersion: options?.ecmaVersion || 7 });
+  return ast;
+}

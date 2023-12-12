@@ -17,7 +17,9 @@ importers:
       '@typescript-eslint/eslint-plugin': ^5.54.1
       '@typescript-eslint/parser': ^5.54.1
       '@zerollup/ts-transform-paths': ^1.7.18
+      acorn: ~8.11.2
       adm-zip: ^0.5.10
+      astring: ~1.8.6
       chalk: ^5.2.0
       commander: ^9.5.0
       eslint: ^8.36.0
@@ -41,7 +43,9 @@ importers:
       template-file: ^6.0.1
       typescript: ^4.9.5
     dependencies:
+      acorn: 8.11.2
       adm-zip: 0.5.10
+      astring: 1.8.6
       chalk: 5.2.0
       commander: 9.5.0
       got: 12.6.1
@@ -4226,21 +4230,20 @@ packages:
       { integrity: sha512-JMJ5soJWP18htbbxJjG7bG6yuI6pRhgJ0scHHTfkUjf6wjP912xZWvM+A4sJK3gqd9E8fcPbDnOefbA9Th/FIQ== }
     dev: true
 
-  /acorn-jsx/5.3.2_acorn@8.8.2:
+  /acorn-jsx/5.3.2_acorn@8.11.2:
     resolution:
       { integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ== }
     peerDependencies:
       acorn: ^6.0.0 || ^7.0.0 || ^8.0.0
     dependencies:
-      acorn: 8.8.2
+      acorn: 8.11.2
     dev: true
 
-  /acorn/8.8.2:
+  /acorn/8.11.2:
     resolution:
-      { integrity: sha512-xjIYgE8HBrkpd/sJqOGNspf8uHG+NOHGOw6a/Urj8taM2EXfdNAH2oFcPeIFfsv3+kz/mJrS5VuMqbNLjCa2vw== }
+      { integrity: sha512-nc0Axzp/0FILLEVsm4fNwLCwMttvhEI263QtVPQcbpfZZ3ts0hLsZGOpE6czNlid7CJ9MlyH8reXkpsf3YUY4w== }
     engines: { node: '>=0.4.0' }
     hasBin: true
-    dev: true
 
   /adm-zip/0.5.10:
     resolution:
@@ -4413,6 +4416,12 @@ packages:
     resolution:
       { integrity: sha512-naMULXjtgCs9SVUEtyvJNt68aF18em7/W+dhbR59kbz9cXWPEvUkCun2tqlgqRPSqZaKPpqLc5ZnwL8jVmJRvw== }
     dev: true
+
+  /astring/1.8.6:
+    resolution:
+      { integrity: sha512-ISvCdHdlTDlH5IpxQJIex7BWBywFWgjJSVdwst+/iQCoEYnyOaQ95+X1JGshuBjGp6nxKUy1jMgE3zPqN7fQdg== }
+    hasBin: true
+    dev: false
 
   /async/3.2.4:
     resolution:
@@ -6561,8 +6570,8 @@ packages:
       { integrity: sha512-7OASN1Wma5fum5SrNhFMAMJxOUAbhyfQ8dQ//PJaJbNw0URTPWqIghHWt1MmAANKhHZIYOHruW4Kw4ruUWOdGw== }
     engines: { node: ^12.22.0 || ^14.17.0 || >=16.0.0 }
     dependencies:
-      acorn: 8.8.2
-      acorn-jsx: 5.3.2_acorn@8.8.2
+      acorn: 8.11.2
+      acorn-jsx: 5.3.2_acorn@8.11.2
       eslint-visitor-keys: 3.4.1
     dev: true
 
@@ -11201,7 +11210,7 @@ packages:
     hasBin: true
     dependencies:
       '@jridgewell/source-map': 0.3.3
-      acorn: 8.8.2
+      acorn: 8.11.2
       commander: 2.20.3
       source-map-support: 0.5.21
     dev: true
