@@ -3,6 +3,8 @@ import inquirer from 'inquirer';
 import ora from 'ora';
 import chalk from 'chalk';
 import * as astring from 'astring';
+import * as acorn from 'acorn';
+import * as acornWalk from 'acorn-walk';
 import { checkPathExists, pathJoin, createFile, getASTTreeOfFile } from '~/utils';
 import { ESLINT_PLUGINS } from '~/constants';
 
@@ -97,32 +99,93 @@ export default function useEslintService(option: UseNextCommonOption) {
           node.expression.left.object.name === 'module' &&
           node.expression.left.property.name === 'exports',
       );
-      // 找到extends数组
-      let extendsArray = exportsAssignment.expression.right.properties.find((prop: any) => prop.key.name === 'extends')
-        ?.value.elements;
-      if (!extendsArray) {
-        extendsArray = [];
-        exportsAssignment.expression.right.properties.push({
-          type: 'Property',
-          key: { type: 'Identifier', name: 'extends' },
-          value: { type: 'ArrayExpression', elements: extendsArray },
-          kind: 'init',
-        });
+      let extendsNode: acorn.Property | undefined;
+      // 找到extends节点,如果是string节点则转为数组节点
+      acornWalk.ancestor(exportsAssignment.expression.right, {
+        Property: (node, ancestors: any[]) => {
+          if (node.key.type === 'Identifier' && node.key.name === 'extends') {
+            if (node.value.type === 'ArrayExpression') {
+              extendsNode = node as acorn.Property;
+            }
+            if (node.value.type === 'Literal') {
+              const index = ancestors[ancestors.length - 2].properties.findIndex((n: any) => n === node);
+              if (index !== -1) {
+                const extendsAST: acorn.ObjectExpression = acorn.parseExpressionAt(
+                  `{ extends: [${node.value.raw}] }`,
+                  0,
+                  {
+                    ecmaVersion: 7,
+                  },
+                ) as acorn.ObjectExpression;
+                ancestors[0].properties.splice(index, 1, extendsAST.properties[0]);
+                extendsNode = extendsAST.properties[0] as acorn.Property;
+              }
+            }
+          }
+        },
+      });
+      // 未找到则新建节点
+      if (!extendsNode) {
+        const extendsAST: acorn.ObjectExpression = acorn.parseExpressionAt('{ extends: [] }', 0, {
+          ecmaVersion: 7,
+        }) as acorn.ObjectExpression;
+        extendsNode = extendsAST.properties[0] as acorn.Property;
+        exportsAssignment.expression.right.properties.push(extendsNode);
       }
-      if (!extendsArray.find((literal: any) => literal.value === type)) {
-        extendsArray.push({
+      // 当不存在type的值时则开始写入,存在则不处理
+      if (
+        extendsNode.value.type === 'ArrayExpression' &&
+        !extendsNode.value.elements.find((el) => el?.type === 'Literal' && el.value === type)
+      ) {
+        extendsNode.value.elements.push({
           type: 'Literal',
           value: type,
           raw: `'${type}'`,
+        } as acorn.Literal);
+        let parserOptionsNode: acorn.Property | undefined;
+        acornWalk.ancestor(exportsAssignment.expression.right, {
+          Property: (node) => {
+            if (node.key.type === 'Identifier' && node.key.name === 'parserOptions') {
+              parserOptionsNode = node as acorn.Property;
+            }
+          },
         });
+        if (!parserOptionsNode) {
+          const parserOptionsAST: acorn.ObjectExpression = acorn.parseExpressionAt('{ parserOptions: {} }', 0, {
+            ecmaVersion: 7,
+          }) as acorn.ObjectExpression;
+          parserOptionsNode = parserOptionsAST.properties[0] as acorn.Property;
+          exportsAssignment.expression.right.properties.push(parserOptionsNode);
+        }
+        let projectNode: acorn.Property | undefined;
+        acornWalk.ancestor(parserOptionsNode!, {
+          Property: (node) => {
+            if (node.key.type === 'Identifier' && node.key.name === 'project') {
+              projectNode = node as acorn.Property;
+            }
+          },
+        });
+        // 不存在project配置则写入默认配置
+        if (!projectNode && parserOptionsNode!.value.type === 'ObjectExpression') {
+          const projectAST: acorn.ObjectExpression = acorn.parseExpressionAt(
+            "{ project: ['tsconfig.json', 'tsconfig.*.json'] }",
+            0,
+            {
+              ecmaVersion: 7,
+            },
+          ) as acorn.ObjectExpression;
+          parserOptionsNode!.value.properties.push(projectAST.properties[0] as acorn.Property);
+        }
         writeFileSync(fileName, astring.generate(ast), { encoding: 'utf8' });
         if (!isCreateEslintFile) {
           printLog.push(chalk.yellow(`Modified ${fileName}`));
         }
       }
-      // FIXME: 还需要处理 parserOptions.project
     }
     // FIXME: 处理package.json内的依赖与scripts命令
+    const pkgFilePath = pathJoin(opt.cwd, 'package.json');
+    const jsonData = JSON.parse(readFileSync(pkgFilePath, 'utf8'));
+    // writeFileSync(fileName, JSON.stringify(jsonData, null, 2), 'utf8');
     console.log(`\n${printLog.join('\n')}`);
     loading.succeed('Eslint 插件安装成功');
   }

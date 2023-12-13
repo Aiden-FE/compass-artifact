@@ -18,6 +18,7 @@ importers:
       '@typescript-eslint/parser': ^5.54.1
       '@zerollup/ts-transform-paths': ^1.7.18
       acorn: ~8.11.2
+      acorn-walk: ~8.3.1
       adm-zip: ^0.5.10
       astring: ~1.8.6
       chalk: ^5.2.0
@@ -44,6 +45,7 @@ importers:
       typescript: ^4.9.5
     dependencies:
       acorn: 8.11.2
+      acorn-walk: 8.3.1
       adm-zip: 0.5.10
       astring: 1.8.6
       chalk: 5.2.0
@@ -4238,6 +4240,12 @@ packages:
     dependencies:
       acorn: 8.11.2
     dev: true
+
+  /acorn-walk/8.3.1:
+    resolution:
+      { integrity: sha512-TgUZgYvqZprrl7YldZNoa9OciCAyZR+Ejm9eXzKCmjsF5IKp/wgQ7Z/ZpjpGTIUPwrHQIcYeI8qDh4PsEwxMbw== }
+    engines: { node: '>=0.4.0' }
+    dev: false
 
   /acorn/8.11.2:
     resolution:
