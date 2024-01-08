@@ -154,3 +154,26 @@ export function getASTTreeOfFile(
   const ast = acorn.parse(code, { ecmaVersion: options?.ecmaVersion || 7 });
   return ast;
 }
+
+/**
+ * 扫描路径下的包管理器
+ * @param opt 配置项
+ * @returns {'npm' | 'pnpm' | 'yarn'}
+ */
+export function scanNpmManager(opt?: { cwd?: string }): 'npm' | 'pnpm' | 'yarn' {
+  const { cwd } = {
+    cwd: process.cwd(),
+    ...opt,
+  };
+  let isPnpm = false;
+  isPnpm = checkPathExists(path.join(cwd, 'pnpm-lock.yaml'));
+  if (isPnpm) {
+    return 'pnpm';
+  }
+  let isYarn = false;
+  isYarn = checkPathExists(path.join(cwd, 'yarn.lock'));
+  if (isYarn) {
+    return 'yarn';
+  }
+  return 'npm';
+}

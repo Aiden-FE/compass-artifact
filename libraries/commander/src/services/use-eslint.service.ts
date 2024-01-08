@@ -1,12 +1,13 @@
 import { readFileSync, writeFileSync } from 'fs';
+import childProcess from 'child_process';
 import inquirer from 'inquirer';
-import ora from 'ora';
 import chalk from 'chalk';
 import * as astring from 'astring';
 import * as acorn from 'acorn';
 import * as acornWalk from 'acorn-walk';
 import { checkPathExists, pathJoin, createFile, getASTTreeOfFile } from '~/utils';
 import { ESLINT_PLUGINS } from '~/constants';
+import { Loading } from '~/services';
 
 interface UseNextCommonOption {
   /**
@@ -36,11 +37,10 @@ export default function useEslintService(option: UseNextCommonOption) {
    * 6. 打印引导提示
    */
   async function addEslintPlugin() {
-    const loading = ora();
+    const loading = new Loading(chalk.cyan('正在扫描Eslint配置文件'));
     const printLog = [] as string[];
     let fileName = '';
     let isCreateEslintFile = false;
-    loading.start(chalk.cyan('正在扫描Eslint配置文件'));
     if (checkPathExists(pathJoin(opt.cwd, '.eslintrc'))) {
       fileName = pathJoin(opt.cwd, '.eslintrc');
     } else if (checkPathExists(pathJoin(opt.cwd, '.eslintrc.js'))) {
@@ -56,7 +56,7 @@ export default function useEslintService(option: UseNextCommonOption) {
       printLog.push(chalk.green(`Created ${fileName}`));
       loading.text = chalk.cyan('未找到Eslint配置文件,已新建Eslint配置文件');
     }
-    loading.stop();
+    loading.pause();
     const { type } = await inquirer.prompt([
       {
         type: 'list',
@@ -65,7 +65,11 @@ export default function useEslintService(option: UseNextCommonOption) {
         choices: ESLINT_PLUGINS,
       },
     ]);
-    loading.start(chalk.cyan('开始写入Eslint配置文件'));
+    const pluginConfig = ESLINT_PLUGINS.find((plugin) => plugin.value === type);
+    if (!pluginConfig) {
+      throw new Error('插件配置错误');
+    }
+    loading.resume(chalk.cyan('开始写入Eslint配置文件'));
     if (fileName.endsWith('.eslintrc.json') || fileName.endsWith('.eslintrc')) {
       loading.text = chalk.cyan('正在读取Eslint配置文件');
       const data = readFileSync(fileName, 'utf8');
@@ -182,12 +186,35 @@ export default function useEslintService(option: UseNextCommonOption) {
         }
       }
     }
-    // FIXME: 处理package.json内的依赖与scripts命令
+    // 处理package.json内的依赖与scripts命令
+    loading.text = chalk.cyan('正在写入package.json scripts lint命令');
     const pkgFilePath = pathJoin(opt.cwd, 'package.json');
     const jsonData = JSON.parse(readFileSync(pkgFilePath, 'utf8'));
-    // writeFileSync(fileName, JSON.stringify(jsonData, null, 2), 'utf8');
-    console.log(`\n${printLog.join('\n')}`);
-    loading.succeed('Eslint 插件安装成功');
+    const lintCmd = pluginConfig.lint;
+    if (!jsonData.scripts) {
+      jsonData.scripts = {
+        lint: lintCmd,
+      };
+      printLog.push(chalk.yellow(`Modified ${pkgFilePath}`));
+    } else if (!jsonData.scripts.lint) {
+      jsonData.scripts.lint = lintCmd;
+      printLog.push(chalk.yellow(`Modified ${pkgFilePath}`));
+    }
+    writeFileSync(pkgFilePath, JSON.stringify(jsonData, null, 2), 'utf8');
+    // 安装所有依赖项
+    loading.text = chalk.cyan('安装依赖项');
+    try {
+      childProcess.execSync(`${opt.manager} install`, { cwd: opt.cwd, stdio: 'inherit' });
+      childProcess.execSync(`${opt.manager} add -D ${pluginConfig.deps.join(' ')}`, { cwd: opt.cwd, stdio: 'inherit' });
+      printLog.push(chalk.yellow(`Installed devDependencies ${pluginConfig.deps.join(',')}`));
+      // eslint-disable-next-line no-console
+      console.log(`\n${printLog.join('\n')}`);
+      loading.succeed(chalk.green('Eslint 插件安装成功'));
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.error(err);
+      loading.fail('安装依赖失败,您可以手动执行安装或修复错误后再次重试');
+    }
   }
 
   return {

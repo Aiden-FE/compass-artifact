@@ -49,7 +49,7 @@ export const ESLINT_PLUGINS = [
       '@typescript-eslint/parser',
       'eslint-plugin-react-refresh',
     ],
-    lint: 'eslint . --fix --ext .js,.jsx,.ts,.tsx',
+    lint: 'next lint',
   },
   {
     name: 'Vue',

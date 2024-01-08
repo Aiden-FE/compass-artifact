@@ -4,6 +4,7 @@ import ora from 'ora';
 import inquirer from 'inquirer';
 import { ConvertArrayToUnion } from '~/interfaces';
 import { Logger, useEslintService, useNextService } from '~/services';
+import { scanNpmManager } from '~/utils';
 
 const G_TYPE = [
   /** 创建Vue项目 */
@@ -17,10 +18,11 @@ const G_TYPE = [
 ];
 
 export interface GCommandOption {
-  manager: 'npm' | 'pnpm' | 'yarn';
+  manager?: 'npm' | 'pnpm' | 'yarn';
+  cwd?: string;
 }
 
-async function createReactProject(option: GCommandOption) {
+async function createReactProject(option: Required<GCommandOption>) {
   const loading = ora();
   const { template } = await inquirer.prompt([
     {
@@ -60,7 +62,7 @@ async function createReactProject(option: GCommandOption) {
   }
 }
 
-function createVueProject(option: GCommandOption) {
+function createVueProject(option: Required<GCommandOption>) {
   const loading = ora();
   loading.start(Logger.info('正在通过 create vue@latest 创建模板', false));
   try {
@@ -86,22 +88,26 @@ export default (program: Command) => {
   program
     .command('g')
     .description('生成插件或项目')
-    .argument('type', '生成的目标类型.\n- vue\t创建Vue3项目\n- next\t创建Next项目')
-    .option('-M, --manager <manager>', '指定包管理器\n- npm\n- pnpm\n- yarn\t', 'npm')
+    .argument('type', '生成的目标类型.\n- vue\t创建Vue3项目\n- next\t创建Next项目\n- eslint\t创建Eslint插件')
+    .option('-M, --manager <manager>', '指定包管理器\n- npm\n- pnpm\n- yarn')
     .option('-C, --cwd <cwd>', '程序执行路径')
     .action(async (type: ConvertArrayToUnion<typeof G_TYPE>, option: GCommandOption) => {
+      const opt = {
+        manager: option.manager || scanNpmManager({ cwd: option.cwd }),
+        cwd: option.cwd || process.cwd(),
+      };
       if (type === 'next') {
-        const { createNextProject } = useNextService(option);
+        const { createNextProject } = useNextService(opt);
         await createNextProject();
       }
       if (type === 'vue') {
-        createVueProject(option);
+        createVueProject(opt);
       }
       if (type === 'react') {
-        await createReactProject(option);
+        await createReactProject(opt);
       }
       if (type === 'eslint') {
-        const { addEslintPlugin } = useEslintService(option);
+        const { addEslintPlugin } = useEslintService(opt);
         await addEslintPlugin();
       }
     });
