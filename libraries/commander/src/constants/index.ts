@@ -107,3 +107,18 @@ export const ESLINT_PLUGINS = [
     lint: 'eslint . --fix --ext .js,.jsx,.ts,.tsx',
   },
 ];
+
+export const PRESET_PRETTIERRC = {
+  printWidth: 120,
+  tabWidth: 2,
+  useTabs: false,
+  semi: true,
+  singleQuote: true,
+  quoteProps: 'as-needed',
+  jsxSingleQuote: false,
+  trailingComma: 'all',
+  bracketSpacing: true,
+  bracketSameLine: false,
+  arrowParens: 'always',
+  endOfLine: 'lf',
+} as Record<string, unknown>;
