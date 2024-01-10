@@ -151,7 +151,18 @@ export function getASTTreeOfFile(
   };
   const target = typeof cwd !== 'undefined' ? path.resolve(cwd, filePath) : filePath;
   const code = readFileSync(target, { encoding });
-  const ast = acorn.parse(code, { ecmaVersion: options?.ecmaVersion || 7 });
+  const comments: any[] = [];
+  const tokens: any[] = [];
+  const ast = acorn.parse(code, {
+    ecmaVersion: options?.ecmaVersion || 7,
+    onComment: comments,
+    onToken: tokens,
+    locations: true,
+  });
+  // @ts-expect-error -- expected
+  ast.comments = comments;
+  // @ts-expect-error -- expected
+  ast.tokens = tokens;
   return ast;
 }
 
@@ -162,8 +173,7 @@ export function getASTTreeOfFile(
  */
 export function scanNpmManager(opt?: { cwd?: string }): 'npm' | 'pnpm' | 'yarn' {
   const { cwd } = {
-    cwd: process.cwd(),
-    ...opt,
+    cwd: opt?.cwd || process.cwd(),
   };
   let isPnpm = false;
   isPnpm = checkPathExists(path.join(cwd, 'pnpm-lock.yaml'));
