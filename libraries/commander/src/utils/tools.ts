@@ -151,8 +151,8 @@ export function getASTTreeOfFile(
   };
   const target = typeof cwd !== 'undefined' ? path.resolve(cwd, filePath) : filePath;
   const code = readFileSync(target, { encoding });
-  const comments: any[] = [];
-  const tokens: any[] = [];
+  const comments: acorn.Comment[] = [];
+  const tokens: acorn.Token[] = [];
   const ast = acorn.parse(code, {
     ecmaVersion: options?.ecmaVersion || 7,
     onComment: comments,
